@@ -36,7 +36,7 @@ The web version presents all 32 pages across 15 two-page spreads, with the spine
 
 ## Live site
 
-[michaelkhela.github.io/pink-book](https://michaelkhela.github.io/pink-book)
+[michaelkhela.github.io/PinkTheBunny](https://michaelkhela.github.io/PinkTheBunny)
 
 ---
 
