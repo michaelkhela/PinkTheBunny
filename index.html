@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink — by Michael Khela</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #b85040;
+    --coral-light: #e8a090;
+    --cream: #fdf6f0;
+    --warm: #f5ede5;
+    --muted: #9a7060;
+    --pink-bunny: #f0b8a8;
+    --pink-dark: #e89888;
+    --skin: #f5c8a8;
+    --brown-dark: #3a2a20;
+    --brown-mid: #7a5040;
+    --wood: #d4b898;
+    --night: #1e2a3a;
+    --night2: #2a1e2e;
+    --gold: #f0c860;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2c1810;
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .book-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #f0d8c8;
+    text-align: center;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  .book-byline {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: #c8a090;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .book-viewer {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .spread {
+    display: none;
+    width: 100%;
+    animation: fadein 0.4s ease;
+  }
+
+  .spread.active { display: block; }
+
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .spread-label {
+    font-size: 0.75rem;
+    color: #c8a080;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+
+  .book-spread {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+    display: flex;
+    min-height: 460px;
+    position: relative;
+  }
+
+  .page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 460px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-illo {
+    width: 100%;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .page-illo svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .page-text {
+    padding: 1rem 1.25rem 0.8rem;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .story-line {
+    font-family: 'Lora', serif;
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    line-height: 1.7;
+    color: #3a2a20;
+    margin-bottom: 0.2rem;
+  }
+
+  .story-line.dark { color: #f0e0d0; }
+
+  .page-num {
+    font-size: 0.65rem;
+    color: #c8a890;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .page-num.dark { color: #6070a0; }
+
+  .spine {
+    width: 20px;
+    flex-shrink: 0;
+    background: #c8a070;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .spine::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0; width: 6px;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .spine::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0; width: 6px;
+    background: rgba(0,0,0,0.1);
+  }
+
+  .spine-text {
+    font-size: 8px;
+    color: #a08050;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.6;
+  }
+
+  .spine.dark-spine { background: #1a1428; }
+  .spine.dark-spine .spine-text { color: #4a3858; }
+
+  .spread-note {
+    font-size: 0.72rem;
+    color: #c8a080;
+    text-align: center;
+    margin-top: 0.6rem;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 1rem;
+  }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .nav-btn {
+    background: #b85040;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 0.6rem 1.6rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-btn:hover { background: #903828; transform: scale(1.03); }
+  .nav-btn:disabled { background: #6a4838; cursor: default; transform: none; opacity: 0.5; }
+
+  .spread-counter {
+    font-size: 0.85rem;
+    color: #c8a080;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #6a4838;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .dot.active { background: #e8a080; transform: scale(1.4); }
+</style>
+</head>
+<body>
+
+<h1 class="book-title">Pink</h1>
+<p class="book-byline">by Michael Khela</p>
+
+<div class="book-viewer">
+
+  <!-- SPREAD 1: pp 1–2 -->
+  <div class="spread active" id="s0">
+    <div class="spread-label">Pages 1–2 &nbsp;·&nbsp; Front endpaper + Title page</div>
+    <div class="book-spread">
+      <!-- Page 1: Front endpaper -->
+      <div class="page" style="background:#fce8d8;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fce8d8"/>
+            <!-- endpaper bunny pattern -->
+            <g opacity="0.55">
+              <!-- row 1 -->
+              <ellipse cx="60" cy="55" rx="13" ry="10" fill="#e8a090"/><circle cx="60" cy="46" r="8" fill="#e8a090"/><ellipse cx="55" cy="36" rx="3" ry="9" fill="#e8a090"/><ellipse cx="65" cy="36" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="160" cy="45" rx="13" ry="10" fill="#d47868"/><circle cx="160" cy="36" r="8" fill="#d47868"/><ellipse cx="155" cy="26" rx="3" ry="9" fill="#d47868"/><ellipse cx="165" cy="26" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="260" cy="60" rx="13" ry="10" fill="#e8a090"/><circle cx="260" cy="51" r="8" fill="#e8a090"/><ellipse cx="255" cy="41" rx="3" ry="9" fill="#e8a090"/><ellipse cx="265" cy="41" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="370" cy="48" rx="13" ry="10" fill="#d47868"/><circle cx="370" cy="39" r="8" fill="#d47868"/><ellipse cx="365" cy="29" rx="3" ry="9" fill="#d47868"/><ellipse cx="375" cy="29" rx="3" ry="9" fill="#d47868"/>
+              <!-- row 2 -->
+              <ellipse cx="100" cy="145" rx="13" ry="10" fill="#d47868"/><circle cx="100" cy="136" r="8" fill="#d47868"/><ellipse cx="95" cy="126" rx="3" ry="9" fill="#d47868"/><ellipse cx="105" cy="126" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="210" cy="135" rx="13" ry="10" fill="#e8a090"/><circle cx="210" cy="126" r="8" fill="#e8a090"/><ellipse cx="205" cy="116" rx="3" ry="9" fill="#e8a090"/><ellipse cx="215" cy="116" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="320" cy="148" rx="13" ry="10" fill="#d47868"/><circle cx="320" cy="139" r="8" fill="#d47868"/><ellipse cx="315" cy="129" rx="3" ry="9" fill="#d47868"/><ellipse cx="325" cy="129" rx="3" ry="9" fill="#d47868"/>
+              <!-- row 3 -->
+              <ellipse cx="55" cy="240" rx="13" ry="10" fill="#e8a090"/><circle cx="55" cy="231" r="8" fill="#e8a090"/><ellipse cx="50" cy="221" rx="3" ry="9" fill="#e8a090"/><ellipse cx="60" cy="221" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="170" cy="248" rx="13" ry="10" fill="#d47868"/><circle cx="170" cy="239" r="8" fill="#d47868"/><ellipse cx="165" cy="229" rx="3" ry="9" fill="#d47868"/><ellipse cx="175" cy="229" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="290" cy="235" rx="13" ry="10" fill="#e8a090"/><circle cx="290" cy="226" r="8" fill="#e8a090"/><ellipse cx="285" cy="216" rx="3" ry="9" fill="#e8a090"/><ellipse cx="295" cy="216" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="390" cy="245" rx="13" ry="10" fill="#d47868"/><circle cx="390" cy="236" r="8" fill="#d47868"/><ellipse cx="385" cy="226" rx="3" ry="9" fill="#d47868"/><ellipse cx="395" cy="226" rx="3" ry="9" fill="#d47868"/>
+            </g>
+            <!-- stars -->
+            <circle cx="130" cy="95" r="2.5" fill="#c87060" opacity="0.5"/>
+            <circle cx="330" cy="100" r="2" fill="#c87060" opacity="0.45"/>
+            <circle cx="80" cy="195" r="2" fill="#c87060" opacity="0.4"/>
+            <circle cx="240" cy="185" r="2.5" fill="#c87060" opacity="0.5"/>
+            <circle cx="360" cy="185" r="2" fill="#c87060" opacity="0.4"/>
+            <circle cx="130" cy="295" r="2" fill="#c87060" opacity="0.4"/>
+            <circle cx="350" cy="300" r="2.5" fill="#c87060" opacity="0.5"/>
+            <!-- clover sprigs -->
+            <circle cx="190" cy="300" r="4" fill="#a8d090" opacity="0.35"/>
+            <circle cx="197" cy="295" r="4" fill="#a8d090" opacity="0.35"/>
+            <circle cx="183" cy="295" r="4" fill="#a8d090" opacity="0.35"/>
+            <line x1="190" y1="300" x2="190" y2="316" stroke="#a8d090" stroke-width="1.5" opacity="0.35"/>
+            <circle cx="400" cy="155" r="4" fill="#a8d090" opacity="0.3"/>
+            <circle cx="407" cy="150" r="4" fill="#a8d090" opacity="0.3"/>
+            <circle cx="393" cy="150" r="4" fill="#a8d090" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fce8d8;">
+          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Front endpaper</p>
+          <p class="page-num">p. 1 — verso</p>
+        </div>
+      </div>
+      <!-- Spine -->
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <!-- Page 2: Title -->
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <ellipse cx="210" cy="400" rx="350" ry="100" fill="#f0d8c0" opacity="0.3"/>
+            <!-- shelf -->
+            <rect x="60" y="230" width="300" height="12" rx="4" fill="#d4b898"/>
+            <rect x="60" y="241" width="300" height="5" rx="2" fill="#c4a880"/>
+            <!-- Pink on shelf, centered, one ear flopped -->
+            <ellipse cx="210" cy="222" rx="38" ry="45" fill="#f0b8a8"/>
+            <circle cx="210" cy="180" r="30" fill="#f0b8a8"/>
+            <!-- straight ear -->
+            <ellipse cx="196" cy="148" rx="9" ry="24" fill="#f0b8a8"/>
+            <ellipse cx="196" cy="148" rx="5" ry="18" fill="#f8d0c4"/>
+            <!-- flopped ear -->
+            <path d="M224 162 Q248 130 238 105 Q231 93 222 107 Q213 122 222 158 Z" fill="#f0b8a8"/>
+            <path d="M221 158 Q243 130 235 108 Q229 97 222 109 Q215 123 221 156 Z" fill="#f8d0c4"/>
+            <!-- belly -->
+            <ellipse cx="210" cy="225" rx="24" ry="30" fill="#f8d0c4"/>
+            <!-- eyes — button, direct -->
+            <circle cx="197" cy="182" r="6" fill="#3a2a20"/>
+            <circle cx="223" cy="182" r="6" fill="#3a2a20"/>
+            <circle cx="199" cy="180" r="1.8" fill="#fff"/>
+            <circle cx="225" cy="180" r="1.8" fill="#fff"/>
+            <!-- nose -->
+            <ellipse cx="210" cy="196" rx="5" ry="4" fill="#c87060"/>
+            <!-- gentle smile -->
+            <path d="M205 201 Q210 206 215 201" stroke="#c87060" stroke-width="1.8" fill="none"/>
+            <!-- whiskers -->
+            <line x1="178" y1="194" x2="204" y2="197" stroke="#c87060" stroke-width="1" opacity="0.4"/>
+            <line x1="178" y1="200" x2="204" y2="200" stroke="#c87060" stroke-width="1" opacity="0.4"/>
+            <line x1="216" y1="197" x2="242" y2="194" stroke="#c87060" stroke-width="1" opacity="0.4"/>
+            <line x1="216" y1="200" x2="242" y2="200" stroke="#c87060" stroke-width="1" opacity="0.4"/>
+            <!-- paws -->
+            <ellipse cx="178" cy="250" rx="16" ry="11" fill="#f0b8a8"/>
+            <ellipse cx="242" cy="250" rx="16" ry="11" fill="#f0b8a8"/>
+            <!-- tail -->
+            <circle cx="248" cy="234" r="14" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.5"/>
+            <!-- title text -->
+            <text x="210" y="50" text-anchor="middle" font-family="'Lora',serif" font-size="52" font-weight="500" fill="#b85040">Pink</text>
+            <text x="210" y="76" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="13" fill="#c87060" letter-spacing="2.5">by michael khela</text>
+            <!-- small stars around title -->
+            <circle cx="130" cy="40" r="2" fill="#e8a090" opacity="0.6"/>
+            <circle cx="290" cy="38" r="2" fill="#e8a090" opacity="0.6"/>
+            <circle cx="155" cy="75" r="1.5" fill="#e8a090" opacity="0.5"/>
+            <circle cx="268" cy="73" r="1.5" fill="#e8a090" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Title page</p>
+          <p class="page-num">p. 2 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Front endpaper (left) glued to inside cover. Title page (right) is the first thing the reader sees on opening.</p>
+  </div>
+
+  <!-- SPREAD 2: pp 3–4 -->
+  <div class="spread" id="s1">
+    <div class="spread-label">Pages 3–4 &nbsp;·&nbsp; Dedication + Pink introduces herself</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf4ef;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf4ef"/>
+            <ellipse cx="210" cy="420" rx="400" ry="120" fill="#f0d8c0" opacity="0.3"/>
+            <!-- faint Pink, small, soft -->
+            <ellipse cx="210" cy="280" rx="28" ry="33" fill="#f0b8a8" opacity="0.45"/>
+            <circle cx="210" cy="250" r="21" fill="#f0b8a8" opacity="0.45"/>
+            <ellipse cx="202" cy="227" rx="6" ry="16" fill="#f0b8a8" opacity="0.45"/>
+            <ellipse cx="218" cy="226" rx="6" ry="16" fill="#f0b8a8" opacity="0.45"/>
+            <circle cx="202" cy="252" r="4" fill="#3a2a20" opacity="0.25"/>
+            <circle cx="218" cy="252" r="4" fill="#3a2a20" opacity="0.25"/>
+            <!-- dedication text in illustration -->
+            <text x="210" y="110" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="18" fill="#a85040" opacity="0.85">For the real pink bunny.</text>
+            <text x="210" y="140" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#c87060" opacity="0.75">And for the girl</text>
+            <text x="210" y="162" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#c87060" opacity="0.75">who carried her.</text>
+            <!-- soft star -->
+            <circle cx="130" cy="200" r="2" fill="#e8a090" opacity="0.4"/>
+            <circle cx="295" cy="195" r="2" fill="#e8a090" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf4ef;">
+          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Dedication</p>
+          <p class="page-num">p. 3 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fdf6f0;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf6f0"/>
+            <!-- nursery window -->
+            <rect x="290" y="30" width="110" height="140" rx="6" fill="#fce8c0" opacity="0.4"/>
+            <line x1="345" y1="30" x2="345" y2="170" stroke="#e8d0b0" stroke-width="2" opacity="0.5"/>
+            <line x1="290" y1="100" x2="400" y2="100" stroke="#e8d0b0" stroke-width="2" opacity="0.5"/>
+            <!-- star mobile -->
+            <line x1="210" y1="15" x2="210" y2="55" stroke="#c8a080" stroke-width="1.5"/>
+            <line x1="165" y1="55" x2="255" y2="55" stroke="#c8a080" stroke-width="1.5"/>
+            <circle cx="155" cy="70" r="7" fill="#e8c090" opacity="0.7"/>
+            <circle cx="265" cy="68" r="7" fill="#f0a890" opacity="0.7"/>
+            <circle cx="210" cy="50" r="5" fill="#a8c8e0" opacity="0.7"/>
+            <!-- shelf -->
+            <rect x="40" y="220" width="340" height="12" rx="4" fill="#d4b898"/>
+            <rect x="40" y="231" width="340" height="5" rx="2" fill="#c4a880"/>
+            <!-- books on shelf -->
+            <rect x="55" y="185" width="16" height="36" rx="2" fill="#a8d4c0" opacity="0.8"/>
+            <rect x="74" y="180" width="16" height="41" rx="2" fill="#c8b4e0" opacity="0.8"/>
+            <rect x="93" y="190" width="14" height="31" rx="2" fill="#f0c8a0" opacity="0.8"/>
+            <!-- Pink on shelf, alone, waiting -->
+            <ellipse cx="210" cy="212" rx="30" ry="36" fill="#f0b8a8"/>
+            <circle cx="210" cy="178" r="23" fill="#f0b8a8"/>
+            <ellipse cx="202" cy="153" rx="7" ry="18" fill="#f0b8a8"/>
+            <ellipse cx="202" cy="153" rx="4" ry="13" fill="#f8d0c4"/>
+            <path d="M218 162 Q232 140 225 120 Q219 109 212 120 Q205 133 212 160 Z" fill="#f0b8a8"/>
+            <path d="M216 159 Q228 140 222 122 Q217 112 212 122 Q206 134 212 157 Z" fill="#f8d0c4"/>
+            <circle cx="202" cy="180" r="4.5" fill="#3a2a20"/>
+            <circle cx="218" cy="180" r="4.5" fill="#3a2a20"/>
+            <circle cx="203.5" cy="178.5" r="1.3" fill="#fff"/>
+            <circle cx="219.5" cy="178.5" r="1.3" fill="#fff"/>
+            <ellipse cx="210" cy="192" rx="4" ry="3" fill="#c87060"/>
+            <ellipse cx="210" cy="212" rx="17" ry="21" fill="#f8d0c4"/>
+            <ellipse cx="188" cy="222" rx="12" ry="8" fill="#f0b8a8"/>
+            <ellipse cx="232" cy="222" rx="12" ry="8" fill="#f0b8a8"/>
+            <circle cx="233" cy="212" r="10" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf6f0;">
+          <p class="story-line">"My name is Pink."</p>
+          <p class="story-line">"I am a bunny."</p>
+          <p class="page-num">p. 4 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Pink alone on the shelf. Waiting, though she doesn't know it yet.</p>
+  </div>
+
+  <!-- SPREAD 3: pp 5–6 -->
+  <div class="spread" id="s2">
+    <div class="spread-label">Pages 5–6 &nbsp;·&nbsp; Jessie's hands reach down</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fff5ef;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff5ef"/>
+            <ellipse cx="210" cy="180" rx="200" ry="160" fill="#ffe8d0" opacity="0.25"/>
+            <!-- child's hands reaching from top, Pink's POV looking up -->
+            <path d="M120 0 Q112 80 116 150 Q118 175 132 188 Q150 200 200 196 Q250 192 264 178 Q276 162 278 130 L262 0" fill="#f5c8a8" stroke="#e8b898" stroke-width="1.5"/>
+            <!-- fingers -->
+            <path d="M128 2 Q123 -15 121 -22 Q119 -30 116 -22 Q113 -10 118 4" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M145 0 Q141 -17 139 -24 Q137 -32 134 -24 Q131 -12 136 2" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M162 -1 Q159 -18 157 -25 Q155 -33 152 -25 Q149 -13 154 1" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M178 0 Q176 -17 174 -24 Q172 -32 169 -24 Q168 -12 172 1" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M194 0 Q193 -17 191 -24 Q189 -32 186 -24 Q185 -12 188 1" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M210 0 Q209 -17 207 -24 Q205 -32 202 -24 Q201 -12 204 1" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M226 1 Q226 -16 224 -23 Q222 -31 219 -23 Q218 -11 221 2" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M241 2 Q242 -15 240 -22 Q238 -30 235 -22 Q234 -10 237 3" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <path d="M255 3 Q257 -13 256 -20 Q254 -28 251 -20 Q250 -8 252 4" fill="#f5c8a8" stroke="#e8b898" stroke-width="1"/>
+            <!-- warm glow -->
+            <ellipse cx="195" cy="110" rx="120" ry="90" fill="#ffd0a0" opacity="0.18"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff5ef;">
+          <p class="story-line" style="color:#c8a080;font-style:italic;font-size:0.8rem;">Jessie's hands, reaching down</p>
+          <p class="page-num">p. 5 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fff5ef;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff5ef"/>
+            <!-- shelf, receding into background -->
+            <rect x="0" y="260" width="420" height="14" rx="3" fill="#d4b898" opacity="0.6"/>
+            <!-- other shelf items, blurred/faint -->
+            <rect x="320" y="220" width="14" height="40" rx="2" fill="#a8d4c0" opacity="0.3"/>
+            <rect x="338" y="215" width="14" height="45" rx="2" fill="#c8b4e0" opacity="0.3"/>
+            <rect x="356" y="225" width="12" height="35" rx="2" fill="#f0c8a0" opacity="0.3"/>
+            <!-- Pink from below/side as she's being lifted -->
+            <ellipse cx="180" cy="245" rx="32" ry="38" fill="#f0b8a8"/>
+            <circle cx="180" cy="210" r="25" fill="#f0b8a8"/>
+            <ellipse cx="172" cy="183" rx="8" ry="19" fill="#f0b8a8"/>
+            <ellipse cx="172" cy="183" rx="4.5" ry="14" fill="#f8d0c4"/>
+            <path d="M188 191 Q202 169 195 149 Q189 138 182 149 Q174 162 182 189 Z" fill="#f0b8a8"/>
+            <path d="M186 188 Q198 169 192 151 Q187 141 182 151 Q175 163 182 186 Z" fill="#f8d0c4"/>
+            <!-- eyes looking upward -->
+            <circle cx="170" cy="212" r="5" fill="#3a2a20"/>
+            <circle cx="190" cy="210" r="5" fill="#3a2a20"/>
+            <circle cx="171.5" cy="210.2" r="1.5" fill="#fff"/>
+            <circle cx="191.5" cy="208.2" r="1.5" fill="#fff"/>
+            <ellipse cx="180" cy="224" rx="18" ry="22" fill="#f8d0c4"/>
+            <ellipse cx="158" cy="256" rx="12" ry="8" fill="#f0b8a8"/>
+            <ellipse cx="202" cy="256" rx="12" ry="8" fill="#f0b8a8"/>
+            <!-- golden lifting light -->
+            <ellipse cx="180" cy="150" rx="100" ry="80" fill="#ffd0a0" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff5ef;">
+          <p class="story-line">"Then Jessie came home."</p>
+          <p class="page-num">p. 6 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Full bleed spread. The hands stay safely left of the spine. Pink looks upward from the right.</p>
+  </div>
+
+  <!-- SPREAD 4: pp 7–8 -->
+  <div class="spread" id="s3">
+    <div class="spread-label">Pages 7–8 &nbsp;·&nbsp; After that, I went everywhere</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf6f0;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf6f0"/>
+            <!-- Panel 1: grocery store (top) -->
+            <rect x="20" y="15" width="380" height="148" rx="9" fill="#e8f4e8" stroke="#c8d8c0" stroke-width="1.5"/>
+            <!-- shelves -->
+            <rect x="40" y="80" width="340" height="6" rx="2" fill="#b8ccb8"/>
+            <rect x="40" y="120" width="340" height="6" rx="2" fill="#b8ccb8"/>
+            <!-- items on shelves -->
+            <rect x="55" y="62" width="16" height="18" rx="2" fill="#f0c080"/><rect x="75" y="58" width="16" height="22" rx="2" fill="#e09070"/><rect x="95" y="64" width="16" height="16" rx="2" fill="#a0d090"/><rect x="115" y="62" width="16" height="18" rx="2" fill="#d0a880"/>
+            <rect x="200" y="60" width="16" height="20" rx="2" fill="#c0d8f0"/><rect x="220" y="64" width="16" height="16" rx="2" fill="#f0c8a0"/><rect x="240" y="58" width="16" height="22" rx="2" fill="#d4a0b0"/>
+            <rect x="55" y="100" width="20" height="20" rx="3" fill="#d0a880"/><rect x="80" y="102" width="18" height="18" rx="3" fill="#c0d8f0"/><rect x="104" y="100" width="18" height="20" rx="3" fill="#f0c080"/>
+            <!-- little Jessie with Pink under arm, left side -->
+            <ellipse cx="155" cy="130" rx="14" ry="22" fill="#f5c8a8"/>
+            <circle cx="155" cy="106" r="11" fill="#f5c8a8"/>
+            <path d="M148 101 Q155 95 162 101" stroke="#8a6040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="155" cy="122" rx="12" ry="10" fill="#a0c8e8"/>
+            <path d="M148 118 Q138 124 136 132" stroke="#f5c8a8" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <!-- Pink tucked under arm -->
+            <ellipse cx="130" cy="130" rx="12" ry="10" fill="#f0b8a8"/>
+            <circle cx="130" cy="120" r="9" fill="#f0b8a8"/>
+            <ellipse cx="125" cy="109" rx="3" ry="8" fill="#f0b8a8"/>
+            <ellipse cx="135" cy="109" rx="3" ry="8" fill="#f0b8a8"/>
+            <circle cx="124" cy="122" r="2.5" fill="#3a2a20"/>
+            <circle cx="136" cy="122" r="2.5" fill="#3a2a20"/>
+            <!-- Panel 2: sidewalk (bottom) -->
+            <rect x="20" y="178" width="380" height="148" rx="9" fill="#f0e8d8" stroke="#d8ccb8" stroke-width="1.5"/>
+            <!-- sidewalk -->
+            <rect x="20" y="268" width="380" height="58" rx="0" fill="#ddd0bc" stroke="none"/>
+            <line x1="20" y1="290" x2="400" y2="290" stroke="#ccc0ac" stroke-width="1.2"/>
+            <line x1="140" y1="268" x2="140" y2="326" stroke="#ccc0ac" stroke-width="1.2"/>
+            <line x1="260" y1="268" x2="260" y2="326" stroke="#ccc0ac" stroke-width="1.2"/>
+            <!-- Jessie walking, Pink dragging -->
+            <ellipse cx="200" cy="248" rx="14" ry="26" fill="#e8c0d8"/>
+            <circle cx="200" cy="220" r="13" fill="#f5c8a8"/>
+            <path d="M192 215 Q200 209 208 215" stroke="#8a6040" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M188 238 Q200 258 212 238" fill="#f090b0"/>
+            <rect x="193" y="248" width="9" height="24" rx="4" fill="#f5c8a8"/>
+            <rect x="205" y="250" width="9" height="22" rx="4" fill="#f5c8a8"/>
+            <ellipse cx="196" cy="274" rx="8" ry="5" fill="#c06060"/>
+            <ellipse cx="210" cy="273" rx="8" ry="5" fill="#c06060"/>
+            <!-- arm holding Pink low -->
+            <line x1="192" y1="238" x2="178" y2="268" stroke="#f5c8a8" stroke-width="7"/>
+            <!-- Pink being dragged, low -->
+            <ellipse cx="172" cy="282" rx="14" ry="10" fill="#f0b8a8"/>
+            <circle cx="172" cy="272" r="10" fill="#f0b8a8"/>
+            <ellipse cx="166" cy="260" rx="3.5" ry="9" fill="#f0b8a8"/>
+            <ellipse cx="178" cy="260" rx="3.5" ry="9" fill="#f0b8a8"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf6f0;">
+          <p class="story-line">"After that, I went everywhere."</p>
+          <p class="page-num">p. 7 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fdf6f0;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fce8d8"/>
+            <!-- high chair scene, centered -->
+            <rect x="130" y="120" width="160" height="14" rx="4" fill="#d4a870"/>
+            <rect x="120" y="107" width="180" height="17" rx="5" fill="#c49860" opacity="0.7"/>
+            <!-- seat -->
+            <rect x="140" y="133" width="140" height="80" rx="5" fill="#e8d0a8" stroke="#d4b880" stroke-width="1.5"/>
+            <!-- legs -->
+            <line x1="148" y1="213" x2="140" y2="295" stroke="#d4a870" stroke-width="6" stroke-linecap="round"/>
+            <line x1="272" y1="213" x2="280" y2="295" stroke="#d4a870" stroke-width="6" stroke-linecap="round"/>
+            <line x1="148" y1="255" x2="272" y2="255" stroke="#d4a870" stroke-width="5" stroke-linecap="round"/>
+            <!-- Jessie in high chair -->
+            <circle cx="210" cy="80" r="22" fill="#f5c8a8"/>
+            <path d="M196 72 Q210 64 224 70" fill="#7a5040"/>
+            <ellipse cx="210" cy="102" rx="22" ry="17" fill="#f0a0b0"/>
+            <!-- eyes -->
+            <circle cx="202" cy="80" r="4.5" fill="#3a2a20"/>
+            <circle cx="218" cy="80" r="4.5" fill="#3a2a20"/>
+            <circle cx="203.5" cy="78.5" r="1.3" fill="#fff"/>
+            <circle cx="219.5" cy="78.5" r="1.3" fill="#fff"/>
+            <!-- smile -->
+            <path d="M204 90 Q210 95 216 90" stroke="#c87060" stroke-width="1.8" fill="none"/>
+            <!-- arms -->
+            <path d="M192 108 Q176 115 172 128" stroke="#f5c8a8" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M228 108 Q244 115 248 128" stroke="#f5c8a8" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <!-- food on tray -->
+            <circle cx="260" cy="136" r="9" fill="#f0c080"/>
+            <circle cx="278" cy="133" r="7" fill="#e09070"/>
+            <!-- Pink propped on tray, watching -->
+            <ellipse cx="162" cy="147" rx="14" ry="17" fill="#f0b8a8"/>
+            <circle cx="162" cy="132" r="11" fill="#f0b8a8"/>
+            <ellipse cx="156" cy="119" rx="3.5" ry="9" fill="#f0b8a8"/>
+            <ellipse cx="156" cy="119" rx="2" ry="7" fill="#f8d0c4"/>
+            <path d="M168 124 Q176 112 171 102" fill="none" stroke="#f0b8a8" stroke-width="7" stroke-linecap="round"/>
+            <!-- Pink eyes looking at Jessie -->
+            <circle cx="156" cy="134" r="3" fill="#3a2a20"/>
+            <circle cx="168" cy="132" r="3" fill="#3a2a20"/>
+            <circle cx="157" cy="132.5" r="0.9" fill="#fff"/>
+            <circle cx="169" cy="130.5" r="0.9" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fce8d8;">
+          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">High chair — Pink watching Jessie eat</p>
+          <p class="page-num">p. 8 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Three vignette panels across two pages. The gutter falls between panels naturally.</p>
+  </div>
+
+  <!-- SPREAD 5: pp 9–10 -->
+  <div class="spread" id="s4">
+    <div class="spread-label">Pages 9–10 &nbsp;·&nbsp; Most important thing in the world</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <ellipse cx="210" cy="400" rx="500" ry="100" fill="#c8e0b8" opacity="0.6"/>
+            <path d="M0 310 Q200 290 420 305" stroke="#d4c4a0" stroke-width="30" fill="none" opacity="0.7"/>
+            <circle cx="80" cy="65" r="48" fill="#fce090" opacity="0.55"/>
+            <!-- Jessie walking, carrying Pink against chest -->
+            <ellipse cx="240" cy="225" rx="34" ry="50" fill="#e8c0d8"/>
+            <path d="M208 242 Q240 272 272 242" fill="#e080a8"/>
+            <rect x="226" y="262" width="11" height="36" rx="5" fill="#f5c8a8"/>
+            <rect x="244" y="268" width="11" height="32" rx="5" fill="#f5c8a8"/>
+            <ellipse cx="230" cy="300" rx="9" ry="5.5" fill="#c06060"/>
+            <ellipse cx="250" cy="302" rx="9" ry="5.5" fill="#c06060"/>
+            <!-- arms around Pink -->
+            <path d="M208 215 Q192 228 196 244 Q200 251 209 244" stroke="#f5c8a8" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <path d="M272 215 Q288 228 284 244 Q280 251 271 244" stroke="#f5c8a8" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <!-- Pink held to chest, eyes at reader -->
+            <ellipse cx="240" cy="200" rx="28" ry="34" fill="#f0b8a8"/>
+            <circle cx="240" cy="168" r="22" fill="#f0b8a8"/>
+            <ellipse cx="231" cy="144" rx="7" ry="17" fill="#f0b8a8"/>
+            <ellipse cx="231" cy="144" rx="4" ry="13" fill="#f8d0c4"/>
+            <path d="M249 152 Q262 130 255 111 Q249 99 242 111 Q234 126 242 150 Z" fill="#f0b8a8"/>
+            <circle cx="231" cy="170" r="5" fill="#3a2a20"/>
+            <circle cx="249" cy="170" r="5" fill="#3a2a20"/>
+            <circle cx="232.5" cy="168.5" r="1.5" fill="#fff"/>
+            <circle cx="250.5" cy="168.5" r="1.5" fill="#fff"/>
+            <ellipse cx="240" cy="183" rx="4" ry="3.5" fill="#c87060"/>
+            <!-- Jessie's head -->
+            <circle cx="240" cy="145" r="34" fill="#f5c8a8"/>
+            <path d="M212 133 Q240 122 268 130" fill="#7a5040"/>
+            <!-- Jessie eyes forward, walking -->
+            <circle cx="228" cy="145" r="5" fill="#3a2a20"/>
+            <circle cx="252" cy="145" r="5" fill="#3a2a20"/>
+            <circle cx="229.5" cy="143.5" r="1.5" fill="#fff"/>
+            <circle cx="253.5" cy="143.5" r="1.5" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line">"Jessie carried me like I was the most important thing in the world."</p>
+          <p class="story-line">"I think I was."</p>
+          <p class="page-num">p. 9 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <ellipse cx="210" cy="400" rx="500" ry="100" fill="#c8e0b8" opacity="0.6"/>
+            <path d="M0 310 Q200 290 420 305" stroke="#d4c4a0" stroke-width="30" fill="none" opacity="0.7"/>
+            <!-- big tree -->
+            <rect x="290" y="140" width="18" height="160" fill="#a08060"/>
+            <circle cx="299" cy="110" r="72" fill="#b8d4a0" opacity="0.75"/>
+            <circle cx="265" cy="128" r="50" fill="#a8cc90" opacity="0.65"/>
+            <circle cx="330" cy="120" r="55" fill="#b0d098" opacity="0.65"/>
+            <!-- distant flowers -->
+            <circle cx="60" cy="310" r="5" fill="#f090a0" opacity="0.5"/>
+            <circle cx="80" cy="308" r="5" fill="#f0d060" opacity="0.5"/>
+            <circle cx="100" cy="312" r="5" fill="#f090a0" opacity="0.5"/>
+            <circle cx="140" cy="306" r="5" fill="#80c870" opacity="0.5"/>
+            <!-- sky -->
+            <ellipse cx="100" cy="80" r="40" fill="#fce090" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">The park extends — background breathes</p>
+          <p class="page-num">p. 10 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Full bleed park scene. Jessie and Pink stay safely on the left page.</p>
+  </div>
+
+  <!-- SPREAD 6: pp 11–12 dark storm -->
+  <div class="spread" id="s5">
+    <div class="spread-label">Pages 11–12 &nbsp;·&nbsp; On hard nights</div>
+    <div class="book-spread">
+      <div class="page" style="background:#1e2a3a;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#1e2a3a"/>
+            <!-- stormy window -->
+            <rect x="270" y="25" width="135" height="150" rx="6" fill="#1a2535"/>
+            <line x1="337" y1="25" x2="337" y2="175" stroke="#253040" stroke-width="3"/>
+            <line x1="270" y1="100" x2="405" y2="100" stroke="#253040" stroke-width="3"/>
+            <!-- lightning -->
+            <path d="M310 32 L296 72 L308 72 L293 115" stroke="#e8e0a0" stroke-width="2.5" fill="none" opacity="0.6"/>
+            <!-- rain streaks -->
+            <line x1="285" y1="30" x2="279" y2="62" stroke="#6080a0" stroke-width="1" opacity="0.45"/>
+            <line x1="302" y1="28" x2="296" y2="60" stroke="#6080a0" stroke-width="1" opacity="0.45"/>
+            <line x1="360" y1="32" x2="354" y2="64" stroke="#6080a0" stroke-width="1" opacity="0.45"/>
+            <line x1="377" y1="30" x2="371" y2="62" stroke="#6080a0" stroke-width="1" opacity="0.45"/>
+            <line x1="394" y1="28" x2="388" y2="60" stroke="#6080a0" stroke-width="1" opacity="0.45"/>
+            <!-- bed headboard -->
+            <rect x="20" y="150" width="380" height="28" rx="7" fill="#5a4038"/>
+            <rect x="20" y="240" width="380" height="100" rx="6" fill="#4a2a20"/>
+            <!-- blanket -->
+            <path d="M20 218 Q210 202 400 214 L400 340 Q210 340 20 340 Z" fill="#7a5060" opacity="0.95"/>
+            <!-- pillow -->
+            <ellipse cx="165" cy="212" rx="105" ry="28" fill="#f0e0d8" opacity="0.9"/>
+            <!-- small lamp -->
+            <circle cx="55" cy="180" r="22" fill="#f0c860" opacity="0.22"/>
+            <path d="M38 188 Q55 166 72 188" fill="#f0c860" opacity="0.4"/>
+            <rect x="48" y="190" width="14" height="28" rx="3" fill="#c8a060" opacity="0.7"/>
+            <!-- Jessie curled, head on pillow -->
+            <circle cx="140" cy="200" r="28" fill="#f5c8a8"/>
+            <path d="M118 189 Q140 181 162 187" fill="#7a5040"/>
+            <!-- eyes closed tight -->
+            <path d="M128 200 Q140 196 152 200" stroke="#3a2a20" stroke-width="2" fill="none"/>
+            <!-- Pink pressed to cheek -->
+            <ellipse cx="104" cy="210" rx="20" ry="24" fill="#f0b8a8"/>
+            <circle cx="104" cy="188" r="17" fill="#f0b8a8"/>
+            <ellipse cx="97" cy="169" rx="5.5" ry="14" fill="#f0b8a8"/>
+            <ellipse cx="97" cy="169" rx="3" ry="10" fill="#f8d0c4"/>
+            <path d="M111 176 Q121 160 115 146 Q110 136 104 147 Q97 159 104 174 Z" fill="#f0b8a8"/>
+            <circle cx="97" cy="190" r="3.5" fill="#3a2a20"/>
+            <circle cx="111" cy="190" r="3.5" fill="#3a2a20"/>
+            <circle cx="98.5" cy="188.5" r="1" fill="#fff"/>
+            <circle cx="112.5" cy="188.5" r="1" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#1e2a3a;">
+          <p class="story-line dark">"On hard nights, she held me tighter."</p>
+          <p class="page-num dark">p. 11 — verso</p>
+        </div>
+      </div>
+      <div class="spine dark-spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#141e2e;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#141e2e"/>
+            <!-- dark blanket fills most of page -->
+            <rect x="0" y="150" width="420" height="190" fill="#7a5060"/>
+            <path d="M0 150 Q140 136 280 143 Q360 148 420 140 L420 165 Q280 175 140 168 Q70 163 0 172 Z" fill="#6a4050"/>
+            <!-- just the top of Pink visible, very close -->
+            <ellipse cx="200" cy="160" rx="65" ry="26" fill="#f0b8a8"/>
+            <ellipse cx="162" cy="125" rx="18" ry="36" fill="#f0b8a8"/>
+            <ellipse cx="163" cy="125" rx="10" ry="28" fill="#f8d0c4"/>
+            <path d="M218 136 Q240 108 232 84 Q226 70 218 82 Q209 96 218 134 Z" fill="#f0b8a8"/>
+            <!-- Pink's eyes, very close, direct -->
+            <circle cx="178" cy="153" r="8" fill="#3a2a20"/>
+            <circle cx="210" cy="151" r="8" fill="#3a2a20"/>
+            <circle cx="180.5" cy="151" r="2.4" fill="#fff"/>
+            <circle cx="212.5" cy="149" r="2.4" fill="#fff"/>
+            <!-- nose just visible -->
+            <ellipse cx="194" cy="168" rx="5" ry="4" fill="#c87060" opacity="0.7"/>
+            <!-- distant window lightning -->
+            <rect x="310" y="15" width="95" height="88" rx="4" fill="#141e2e"/>
+            <path d="M355 20 L343 50 L354 50 L341 82" stroke="#e8e0a0" stroke-width="2" fill="none" opacity="0.45"/>
+            <!-- top darkness -->
+            <rect x="0" y="0" width="420" height="150" fill="#0e1828"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#141e2e;">
+          <p class="story-line dark">"I couldn't make the thunder stop."</p>
+          <p class="story-line dark">"But I stayed."</p>
+          <p class="page-num dark">p. 12 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Dark spread. Both pages unified in darkness. Pink's eye is the only warmth.</p>
+  </div>
+
+  <!-- SPREAD 7: pp 13–14 bedtime -->
+  <div class="spread" id="s6">
+    <div class="spread-label">Pages 13–14 &nbsp;·&nbsp; Every night, we went to sleep together</div>
+    <div class="book-spread">
+      <div class="page" style="background:#2a1e2e;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#2a1e2e"/>
+            <!-- lamp glow -->
+            <circle cx="68" cy="140" r="55" fill="#f0c860" opacity="0.2"/>
+            <path d="M46 162 Q68 136 90 162" fill="#f0c860" opacity="0.4"/>
+            <rect x="60" y="164" width="16" height="30" rx="3" fill="#c8a060"/>
+            <ellipse cx="68" cy="196" rx="18" ry="5" fill="#b89050"/>
+            <!-- bed headboard -->
+            <rect x="40" y="118" width="340" height="26" rx="7" fill="#5a3828"/>
+            <rect x="40" y="228" width="340" height="112" rx="6" fill="#4a2a20"/>
+            <!-- star blanket -->
+            <path d="M40 210 Q210 192 380 204 L380 340 Q210 340 40 340 Z" fill="#c87880"/>
+            <path d="M40 210 Q210 195 380 204" stroke="#b86870" stroke-width="2" fill="none"/>
+            <!-- star pattern on blanket -->
+            <circle cx="130" cy="270" r="2" fill="#e8a0a8" opacity="0.5"/>
+            <circle cx="190" cy="285" r="1.8" fill="#e8a0a8" opacity="0.45"/>
+            <circle cx="260" cy="265" r="2" fill="#e8a0a8" opacity="0.5"/>
+            <circle cx="320" cy="282" r="1.8" fill="#e8a0a8" opacity="0.45"/>
+            <!-- pillow -->
+            <ellipse cx="200" cy="204" rx="118" ry="30" fill="#f0e0d8" opacity="0.9"/>
+            <!-- Jessie asleep, arm around Pink -->
+            <circle cx="186" cy="193" r="32" fill="#f5c8a8"/>
+            <path d="M160 181 Q186 171 212 178" fill="#7a5040"/>
+            <!-- hair wisps -->
+            <path d="M160 187 Q153 168 157 156 Q162 146 168 154" fill="none" stroke="#7a5040" stroke-width="4" stroke-linecap="round"/>
+            <path d="M212 186 Q219 167 215 155 Q210 145 204 153" fill="none" stroke="#7a5040" stroke-width="4" stroke-linecap="round"/>
+            <!-- eyes closed -->
+            <path d="M172 193 Q186 189 200 193" stroke="#3a2a20" stroke-width="2" fill="none"/>
+            <!-- small smile -->
+            <path d="M174 205 Q186 211 198 205" stroke="#c87060" stroke-width="1.8" fill="none"/>
+            <!-- arm around Pink -->
+            <path d="M162 218 Q144 228 140 242" stroke="#f5c8a8" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <!-- Pink tucked in, eyes closed too -->
+            <ellipse cx="122" cy="250" rx="28" ry="34" fill="#f0b8a8"/>
+            <circle cx="122" cy="218" r="22" fill="#f0b8a8"/>
+            <ellipse cx="114" cy="194" rx="7" ry="17" fill="#f0b8a8"/>
+            <ellipse cx="114" cy="194" rx="4" ry="13" fill="#f8d0c4"/>
+            <path d="M130 200 Q142 181 136 165" fill="none" stroke="#f0b8a8" stroke-width="11" stroke-linecap="round"/>
+            <path d="M112 220 Q122 216 132 220" stroke="#3a2a20" stroke-width="1.5" fill="none"/>
+            <!-- stars outside window -->
+            <rect x="305" y="20" width="100" height="100" rx="5" fill="#0e1525"/>
+            <line x1="355" y1="20" x2="355" y2="120" stroke="#1a2535" stroke-width="2.5"/>
+            <line x1="305" y1="70" x2="405" y2="70" stroke="#1a2535" stroke-width="2.5"/>
+            <circle cx="330" cy="42" r="1.5" fill="#e8e8c0" opacity="0.8"/>
+            <circle cx="365" cy="35" r="1.5" fill="#e8e8c0" opacity="0.8"/>
+            <circle cx="390" cy="50" r="1.5" fill="#e8e8c0" opacity="0.8"/>
+            <circle cx="348" cy="58" r="1" fill="#e8e8c0" opacity="0.7"/>
+            <circle cx="378" cy="82" r="1" fill="#e8e8c0" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#2a1e2e;">
+          <p class="story-line dark">"Every night, we went to sleep together."</p>
+          <p class="page-num dark">p. 13 — verso</p>
+        </div>
+      </div>
+      <div class="spine dark-spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#2a1e2e;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#2a1e2e"/>
+            <!-- intimate close-up, just the two of them -->
+            <ellipse cx="210" cy="240" rx="260" ry="140" fill="#f0c860" opacity="0.07"/>
+            <ellipse cx="210" cy="240" rx="180" ry="100" fill="#f0c860" opacity="0.09"/>
+            <!-- Jessie's sleeping face, soft -->
+            <circle cx="290" cy="185" r="52" fill="#f5c8a8"/>
+            <path d="M260 170 Q290 158 320 166" fill="#7a5040"/>
+            <path d="M260 176 Q253 158 257 146 Q261 136 267 143" fill="none" stroke="#7a5040" stroke-width="4" stroke-linecap="round"/>
+            <path d="M320 175 Q327 157 323 145 Q319 135 313 142" fill="none" stroke="#7a5040" stroke-width="4" stroke-linecap="round"/>
+            <!-- eyes closed, peaceful -->
+            <path d="M273 185 Q290 181 307 185" stroke="#3a2a20" stroke-width="2.2" fill="none"/>
+            <!-- nose -->
+            <ellipse cx="290" cy="200" rx="6" ry="5" fill="#e8b090" opacity="0.6"/>
+            <!-- gentle mouth -->
+            <path d="M280 213 Q290 219 300 213" stroke="#c87060" stroke-width="2" fill="none"/>
+            <!-- Pink close, eyes out at reader -->
+            <ellipse cx="122" cy="225" rx="38" ry="46" fill="#f0b8a8"/>
+            <circle cx="122" cy="180" r="30" fill="#f0b8a8"/>
+            <ellipse cx="112" cy="148" rx="10" ry="22" fill="#f0b8a8"/>
+            <ellipse cx="112" cy="148" rx="5.5" ry="17" fill="#f8d0c4"/>
+            <path d="M132 157 Q148 130 140 108 Q134 95 126 107 Q117 122 126 154 Z" fill="#f0b8a8"/>
+            <ellipse cx="122" cy="224" rx="22" ry="26" fill="#f8d0c4"/>
+            <ellipse cx="96" cy="238" rx="14" ry="9" fill="#f0b8a8"/>
+            <ellipse cx="148" cy="238" rx="14" ry="9" fill="#f0b8a8"/>
+            <!-- Pink's eyes, direct -->
+            <circle cx="108" cy="183" r="6.5" fill="#3a2a20"/>
+            <circle cx="136" cy="183" r="6.5" fill="#3a2a20"/>
+            <circle cx="110" cy="181" r="2" fill="#fff"/>
+            <circle cx="138" cy="181" r="2" fill="#fff"/>
+            <!-- Pink nose -->
+            <ellipse cx="122" cy="198" rx="5" ry="4" fill="#c87060"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#2a1e2e;">
+          <p class="story-line dark">"I know every part of her."</p>
+          <p class="story-line dark">"The way she smells. The sound she makes when she's almost asleep."</p>
+          <p class="page-num dark">p. 14 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Warm and intimate. Both pages golden-dark. Pink's eyes look out at the reader on page 14.</p>
+  </div>
+
+  <!-- SPREAD 8: pp 15–16 -->
+  <div class="spread" id="s7">
+    <div class="spread-label">Pages 15–16 &nbsp;·&nbsp; Then one morning, everything felt different</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <ellipse cx="210" cy="-20" rx="400" ry="130" fill="#fce8c0" opacity="0.4"/>
+            <!-- new backpack on floor -->
+            <rect x="295" y="222" width="80" height="100" rx="12" fill="#6090d0"/>
+            <rect x="302" y="213" width="66" height="16" rx="7" fill="#5080c0"/>
+            <rect x="310" y="238" width="50" height="38" rx="7" fill="#7098d8" stroke="#5080c0" stroke-width="1.5"/>
+            <rect x="314" y="242" width="42" height="30" rx="5" fill="#80a8e0"/>
+            <path d="M314 253 Q335 247 356 253" stroke="#5080c0" stroke-width="1.5" fill="none"/>
+            <!-- sparkle of newness -->
+            <circle cx="375" cy="208" r="3" fill="#80a8e0" opacity="0.7"/>
+            <circle cx="393" cy="220" r="2" fill="#80a8e0" opacity="0.6"/>
+            <!-- Jessie in new clothes, nervous -->
+            <ellipse cx="165" cy="228" rx="32" ry="48" fill="#a0c8e8"/>
+            <path d="M135 248 Q165 275 195 248" fill="#80b0d8"/>
+            <rect x="153" y="266" width="11" height="34" rx="5" fill="#f5c8a8"/>
+            <rect x="170" y="268" width="11" height="32" rx="5" fill="#f5c8a8"/>
+            <ellipse cx="157" cy="302" rx="9" ry="5.5" fill="#c06060"/>
+            <ellipse cx="177" cy="303" rx="9" ry="5.5" fill="#c06060"/>
+            <!-- adult hands adjusting collar -->
+            <path d="M136 198 Q118 206 115 220" stroke="#f5c8a8" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M194 198 Q212 206 215 220" stroke="#f5c8a8" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <!-- Jessie head, wide-eyed -->
+            <circle cx="165" cy="165" r="34" fill="#f5c8a8"/>
+            <path d="M142 153 Q165 143 188 150" fill="#7a5040"/>
+            <!-- hair clips -->
+            <circle cx="148" cy="148" r="5.5" fill="#f060a0"/>
+            <circle cx="182" cy="146" r="5.5" fill="#f060a0"/>
+            <!-- nervous wide eyes -->
+            <circle cx="153" cy="165" r="6" fill="#3a2a20"/>
+            <circle cx="177" cy="165" r="6" fill="#3a2a20"/>
+            <circle cx="154.5" cy="163.5" r="1.8" fill="#fff"/>
+            <circle cx="178.5" cy="163.5" r="1.8" fill="#fff"/>
+            <!-- small uncertain mouth -->
+            <path d="M156 178 Q165 182 174 178" stroke="#3a2a20" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line">"Then one morning, everything felt different."</p>
+          <p class="page-num">p. 15 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <!-- bed -->
+            <rect x="30" y="215" width="360" height="18" rx="6" fill="#d4a090" opacity="0.5"/>
+            <rect x="30" y="232" width="360" height="108" rx="6" fill="#c87880" opacity="0.45"/>
+            <!-- Pink on bed, watching, still -->
+            <ellipse cx="168" cy="238" rx="26" ry="30" fill="#f0b8a8"/>
+            <circle cx="168" cy="210" r="20" fill="#f0b8a8"/>
+            <ellipse cx="160" cy="188" rx="6.5" ry="15" fill="#f0b8a8"/>
+            <ellipse cx="160" cy="188" rx="3.5" ry="11" fill="#f8d0c4"/>
+            <path d="M176 196 Q186 180 180 166 Q175 156 168 167 Q161 179 168 194 Z" fill="#f0b8a8"/>
+            <ellipse cx="168" cy="237" rx="15" ry="12" fill="#f8d0c4"/>
+            <ellipse cx="148" cy="246" rx="10" ry="6.5" fill="#f0b8a8"/>
+            <ellipse cx="188" cy="246" rx="10" ry="6.5" fill="#f0b8a8"/>
+            <circle cx="189" cy="236" r="9" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.2"/>
+            <!-- Pink eyes watching, alert -->
+            <circle cx="160" cy="212" r="4.5" fill="#3a2a20"/>
+            <circle cx="176" cy="212" r="4.5" fill="#3a2a20"/>
+            <circle cx="161.5" cy="210.5" r="1.3" fill="#fff"/>
+            <circle cx="177.5" cy="210.5" r="1.3" fill="#fff"/>
+            <!-- Jessie's feet visible, heading for door -->
+            <ellipse cx="300" cy="288" rx="12" ry="6.5" fill="#c06060" opacity="0.6"/>
+            <ellipse cx="340" cy="292" rx="12" ry="6.5" fill="#c06060" opacity="0.6"/>
+            <rect x="295" y="268" width="11" height="22" rx="5" fill="#f5c8a8" opacity="0.5"/>
+            <rect x="335" y="270" width="11" height="22" rx="5" fill="#f5c8a8" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">Pink on the bed, watching — for the first time, not being carried</p>
+          <p class="page-num">p. 16 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">The gutter first separates Jessie (left) from Pink (right). A quiet visual foreshadowing.</p>
+  </div>
+
+  <!-- SPREAD 9: pp 17–18 THE GOODBYE -->
+  <div class="spread" id="s8">
+    <div class="spread-label">Pages 17–18 &nbsp;·&nbsp; The goodbye — gutter does emotional work</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <ellipse cx="210" cy="175" rx="180" ry="150" fill="#fce8d0" opacity="0.35"/>
+            <!-- Jessie holding Pink up to her face, goodbye -->
+            <ellipse cx="210" cy="248" rx="36" ry="50" fill="#a0c8e8"/>
+            <circle cx="210" cy="185" r="36" fill="#f5c8a8"/>
+            <path d="M182 172 Q210 162 238 169" fill="#7a5040"/>
+            <!-- eyes closed, holding close -->
+            <path d="M196 185 Q210 181 224 185" stroke="#3a2a20" stroke-width="2.2" fill="none"/>
+            <!-- arms lifting Pink -->
+            <path d="M182 210 Q160 220 156 238" stroke="#f5c8a8" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <path d="M238 210 Q260 220 264 238" stroke="#f5c8a8" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <!-- Pink held up, cheek to cheek -->
+            <ellipse cx="210" cy="195" rx="28" ry="34" fill="#f0b8a8"/>
+            <circle cx="210" cy="163" r="22" fill="#f0b8a8"/>
+            <ellipse cx="201" cy="139" rx="7" ry="17" fill="#f0b8a8"/>
+            <ellipse cx="201" cy="139" rx="4" ry="13" fill="#f8d0c4"/>
+            <path d="M219 148 Q232 126 225 107 Q219 95 212 107 Q204 121 212 146 Z" fill="#f0b8a8"/>
+            <!-- Pink eyes open, looking out -->
+            <circle cx="200" cy="165" r="5.5" fill="#3a2a20"/>
+            <circle cx="220" cy="165" r="5.5" fill="#3a2a20"/>
+            <circle cx="201.5" cy="163.5" r="1.6" fill="#fff"/>
+            <circle cx="221.5" cy="163.5" r="1.6" fill="#fff"/>
+            <ellipse cx="210" cy="178" rx="4" ry="3.5" fill="#c87060"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line">"Jessie picked me up."</p>
+          <p class="page-num">p. 17 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <!-- bed -->
+            <rect x="30" y="208" width="360" height="16" rx="5" fill="#d4a090" opacity="0.5"/>
+            <rect x="30" y="223" width="360" height="117" rx="6" fill="#c87880" opacity="0.4"/>
+            <!-- Pink set down alone, lopsided -->
+            <ellipse cx="178" cy="238" rx="26" ry="30" fill="#f0b8a8"/>
+            <circle cx="178" cy="210" r="20" fill="#f0b8a8"/>
+            <!-- one ear up, one flopped low -->
+            <ellipse cx="169" cy="188" rx="6.5" ry="15" fill="#f0b8a8"/>
+            <ellipse cx="169" cy="188" rx="3.5" ry="11" fill="#f8d0c4"/>
+            <path d="M187 196 Q200 175 193 158 Q188 147 180 159 Q172 172 180 194 Z" fill="#f0b8a8"/>
+            <!-- slightly lopsided body -->
+            <ellipse cx="178" cy="237" rx="15" ry="12" fill="#f8d0c4"/>
+            <ellipse cx="158" cy="246" rx="10" ry="6.5" fill="#f0b8a8"/>
+            <ellipse cx="198" cy="248" rx="10" ry="6.5" fill="#f0b8a8"/>
+            <circle cx="200" cy="237" r="9" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.2"/>
+            <!-- Pink watching Jessie leave -->
+            <circle cx="170" cy="212" r="4.5" fill="#3a2a20"/>
+            <circle cx="186" cy="212" r="4.5" fill="#3a2a20"/>
+            <circle cx="171.5" cy="210.5" r="1.3" fill="#fff"/>
+            <circle cx="187.5" cy="210.5" r="1.3" fill="#fff"/>
+            <!-- Jessie's back, walking away, upper right -->
+            <ellipse cx="340" cy="195" rx="28" ry="42" fill="#a0c8e8" opacity="0.65"/>
+            <!-- backpack visible on Jessie's back -->
+            <rect x="316" y="160" width="48" height="58" rx="9" fill="#6090d0" opacity="0.6"/>
+            <rect x="322" y="154" width="36" height="11" rx="5" fill="#5080c0" opacity="0.6"/>
+            <circle cx="340" cy="140" r="22" fill="#f5c8a8" opacity="0.65"/>
+            <path d="M322 131 Q340 123 358 130" fill="#7a5040" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line">"Then she put me down."</p>
+          <p class="page-num">p. 18 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">The spine physically separates these two moments. Held (left) — set down (right). The binding does the emotional work.</p>
+  </div>
+
+  <!-- SPREAD 10: pp 19–20 door closes -->
+  <div class="spread" id="s9">
+    <div class="spread-label">Pages 19–20 &nbsp;·&nbsp; She walked out the door. Without me.</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <!-- floor, perspective -->
+            <rect x="0" y="295" width="420" height="45" fill="#e8d4b8" opacity="0.45"/>
+            <!-- Pink, small, alone in hallway -->
+            <ellipse cx="130" cy="262" rx="22" ry="26" fill="#f0b8a8"/>
+            <circle cx="130" cy="238" r="17" fill="#f0b8a8"/>
+            <ellipse cx="123" cy="219" rx="5.5" ry="13" fill="#f0b8a8"/>
+            <ellipse cx="123" cy="219" rx="3" ry="9.5" fill="#f8d0c4"/>
+            <path d="M137 226 Q147 211 141 198 Q136 189 130 199 Q123 210 130 224 Z" fill="#f0b8a8"/>
+            <ellipse cx="130" cy="261" rx="12" ry="9" fill="#f8d0c4"/>
+            <ellipse cx="113" cy="269" rx="8" ry="5" fill="#f0b8a8"/>
+            <ellipse cx="147" cy="270" rx="8" ry="5" fill="#f0b8a8"/>
+            <circle cx="149" cy="260" r="7" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1"/>
+            <!-- button eyes watching door -->
+            <circle cx="122" cy="240" r="4" fill="#3a2a20"/>
+            <circle cx="138" cy="240" r="4" fill="#3a2a20"/>
+            <circle cx="123.2" cy="238.5" r="1.2" fill="#fff"/>
+            <circle cx="139.2" cy="238.5" r="1.2" fill="#fff"/>
+            <!-- shadow beneath -->
+            <ellipse cx="130" cy="293" rx="25" ry="6" fill="#e8d0c0" opacity="0.3"/>
+            <!-- all the rest is white space -->
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line">"She walked out the door."</p>
+          <p class="story-line">"Without me."</p>
+          <p class="page-num">p. 19 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <rect x="0" y="295" width="420" height="45" fill="#e8d4b8" opacity="0.45"/>
+            <!-- front door, almost shut -->
+            <rect x="100" y="25" width="220" height="310" rx="4" fill="#b89070"/>
+            <rect x="104" y="29" width="212" height="302" rx="3" fill="#c8a080"/>
+            <!-- door panels -->
+            <rect x="120" y="52" width="82" height="90" rx="3" fill="#b89070" opacity="0.45"/>
+            <rect x="218" y="52" width="82" height="90" rx="3" fill="#b89070" opacity="0.45"/>
+            <rect x="120" y="158" width="82" height="90" rx="3" fill="#b89070" opacity="0.45"/>
+            <rect x="218" y="158" width="82" height="90" rx="3" fill="#b89070" opacity="0.45"/>
+            <!-- door knob -->
+            <circle cx="108" cy="170" r="9" fill="#d4a050"/>
+            <circle cx="108" cy="170" r="5" fill="#c89040"/>
+            <!-- sliver of outside light, door just closed -->
+            <rect x="320" y="25" width="8" height="310" fill="#fce090" opacity="0.35"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">The door, almost shut. The hallway empty.</p>
+          <p class="page-num">p. 20 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Maximum white space. Pink is tiny on the left. The door is closed on the right. Emptiness is the art.</p>
+  </div>
+
+  <!-- SPREAD 11: pp 21–22 THE CENTER -->
+  <div class="spread" id="s10">
+    <div class="spread-label">Pages 21–22 &nbsp;·&nbsp; I waited. — The emotional center of the book</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <!-- one word, maximum white space, upper left -->
+            <text x="52" y="148" font-family="'Lora',serif" font-size="48" font-weight="500" fill="#b85040" opacity="0.9">"I waited."</text>
+            <!-- tiny faint Pink, very small, corner -->
+            <ellipse cx="340" cy="295" rx="10" ry="12" fill="#f0b8a8" opacity="0.2"/>
+            <circle cx="340" cy="284" r="8" fill="#f0b8a8" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line" style="font-size:1.2rem; letter-spacing:0.04em;">"I waited."</p>
+          <p class="page-num">p. 21 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <!-- Pink alone, very small, centered slightly left -->
+            <ellipse cx="155" cy="258" rx="17" ry="20" fill="#f0b8a8"/>
+            <circle cx="155" cy="240" r="13" fill="#f0b8a8"/>
+            <ellipse cx="149" cy="225" rx="4.5" ry="11" fill="#f0b8a8"/>
+            <ellipse cx="149" cy="225" rx="2.5" ry="8" fill="#f8d0c4"/>
+            <path d="M161 231 Q169 219 164 208 Q160 200 155 209 Q149 219 155 230 Z" fill="#f0b8a8"/>
+            <ellipse cx="155" cy="257" rx="9.5" ry="7.5" fill="#f8d0c4"/>
+            <ellipse cx="143" cy="264" rx="6.5" ry="4" fill="#f0b8a8"/>
+            <ellipse cx="167" cy="265" rx="6.5" ry="4" fill="#f0b8a8"/>
+            <circle cx="169" cy="256" r="6" fill="#fff8f2" stroke="#f0b8a8" stroke-width="0.8"/>
+            <!-- tiny eyes -->
+            <circle cx="149" cy="242" r="3" fill="#3a2a20"/>
+            <circle cx="161" cy="242" r="3" fill="#3a2a20"/>
+            <circle cx="150" cy="240.8" r="0.9" fill="#fff"/>
+            <circle cx="162" cy="240.8" r="0.9" fill="#fff"/>
+            <!-- shadow, barely there -->
+            <ellipse cx="155" cy="282" rx="20" ry="5" fill="#e8d0c0" opacity="0.22"/>
+            <!-- distant window light, far upper right -->
+            <rect x="350" y="55" width="60" height="80" rx="4" fill="#fce8c0" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line" style="color:#c8a080;font-style:italic;font-size:0.8rem;">Pink alone. Surrounded by white space. Time passes.</p>
+          <p class="page-num">p. 22 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">The most important spread. One word on the left. Pink tiny and alone on the right. Let the silence be the art.</p>
+  </div>
+
+  <!-- SPREAD 12: pp 23–24 time passing -->
+  <div class="spread" id="s11">
+    <div class="spread-label">Pages 23–24 &nbsp;·&nbsp; I don't know what happened at school</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <!-- clock on wall -->
+            <circle cx="72" cy="72" r="34" fill="none" stroke="#e0c8b8" stroke-width="2"/>
+            <circle cx="72" cy="72" r="28" fill="#fdf4ef" stroke="#e0c8b8" stroke-width="1"/>
+            <!-- clock hands, afternoon time -->
+            <line x1="72" y1="72" x2="72" y2="50" stroke="#c8a890" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="72" y1="72" x2="90" y2="82" stroke="#c8a890" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="72" cy="72" r="3.5" fill="#c8a890"/>
+            <!-- clock tick marks -->
+            <line x1="72" y1="46" x2="72" y2="50" stroke="#e0c8b8" stroke-width="1.5"/>
+            <line x1="72" y1="94" x2="72" y2="98" stroke="#e0c8b8" stroke-width="1.5"/>
+            <line x1="46" y1="72" x2="50" y2="72" stroke="#e0c8b8" stroke-width="1.5"/>
+            <line x1="94" y1="72" x2="98" y2="72" stroke="#e0c8b8" stroke-width="1.5"/>
+            <!-- afternoon light shaft -->
+            <rect x="320" y="25" width="90" height="120" rx="5" fill="#fce090" opacity="0.28"/>
+            <line x1="365" y1="25" x2="365" y2="145" stroke="#e8d0a8" stroke-width="1.5" opacity="0.4"/>
+            <line x1="320" y1="85" x2="410" y2="85" stroke="#e8d0a8" stroke-width="1.5" opacity="0.4"/>
+            <path d="M320 145 Q390 162 410 148 L410 170 Q390 180 320 165 Z" fill="#fce090" opacity="0.2"/>
+            <!-- Pink, same spot, same size -->
+            <ellipse cx="175" cy="260" rx="20" ry="24" fill="#f0b8a8"/>
+            <circle cx="175" cy="238" r="16" fill="#f0b8a8"/>
+            <ellipse cx="168" cy="221" rx="5.5" ry="12" fill="#f0b8a8"/>
+            <ellipse cx="168" cy="221" rx="3" ry="9" fill="#f8d0c4"/>
+            <path d="M182 228 Q191 215 186 204 Q182 195 175 204 Q168 214 175 226 Z" fill="#f0b8a8"/>
+            <ellipse cx="175" cy="259" rx="11" ry="8.5" fill="#f8d0c4"/>
+            <ellipse cx="160" cy="267" rx="7.5" ry="4.5" fill="#f0b8a8"/>
+            <ellipse cx="190" cy="268" rx="7.5" ry="4.5" fill="#f0b8a8"/>
+            <circle cx="192" cy="258" r="7" fill="#fff8f2" stroke="#f0b8a8" stroke-width="0.9"/>
+            <circle cx="167" cy="240" r="3.5" fill="#3a2a20"/>
+            <circle cx="183" cy="240" r="3.5" fill="#3a2a20"/>
+            <circle cx="168.3" cy="238.5" r="1" fill="#fff"/>
+            <circle cx="184.3" cy="238.5" r="1" fill="#fff"/>
+            <ellipse cx="175" cy="285" rx="22" ry="5" fill="#e8d0c0" opacity="0.22"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line">"I don't know what happened at school."</p>
+          <p class="page-num">p. 23 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <!-- long afternoon light shaft across floor -->
+            <path d="M60 145 Q200 160 380 148 L380 175 Q200 188 60 170 Z" fill="#fce090" opacity="0.22"/>
+            <rect x="30" y="28" width="85" height="115" rx="5" fill="#fce8c0" opacity="0.22"/>
+            <path d="M30 143 Q90 158 115 145 L115 165 Q90 175 30 162 Z" fill="#fce090" opacity="0.18"/>
+            <!-- just the quiet empty room, Pink's absence felt -->
+            <!-- floor boards subtle -->
+            <line x1="0" y1="310" x2="420" y2="310" stroke="#e8d4b8" stroke-width="1" opacity="0.4"/>
+            <line x1="0" y1="290" x2="420" y2="290" stroke="#e8d4b8" stroke-width="1" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line">"I wasn't there."</p>
+          <p class="page-num">p. 24 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">The clock shows time has passed. The light has shifted. Pink hasn't moved. The right page is just empty room — her absence fills it.</p>
+  </div>
+
+  <!-- SPREAD 13: pp 25–26 door opens -->
+  <div class="spread" id="s12">
+    <div class="spread-label">Pages 25–26 &nbsp;·&nbsp; But then the door opened</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <rect x="0" y="295" width="420" height="45" fill="#e8d4b8" opacity="0.45"/>
+            <!-- same hallway, now a warm glow under the door -->
+            <rect x="280" y="280" width="140" height="10" fill="#fce090" opacity="0.45"/>
+            <!-- Pink alert, eyes wide -->
+            <ellipse cx="120" cy="262" rx="22" ry="26" fill="#f0b8a8"/>
+            <circle cx="120" cy="238" r="17" fill="#f0b8a8"/>
+            <ellipse cx="113" cy="219" rx="5.5" ry="13" fill="#f0b8a8"/>
+            <ellipse cx="113" cy="219" rx="3" ry="9.5" fill="#f8d0c4"/>
+            <path d="M127 226 Q137 211 131 198 Q126 189 120 199 Q113 210 120 224 Z" fill="#f0b8a8"/>
+            <ellipse cx="120" cy="261" rx="12" ry="9" fill="#f8d0c4"/>
+            <ellipse cx="103" cy="269" rx="8" ry="5" fill="#f0b8a8"/>
+            <ellipse cx="137" cy="270" rx="8" ry="5" fill="#f0b8a8"/>
+            <circle cx="139" cy="260" r="7" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1"/>
+            <!-- eyes wide, alert, looking toward the door -->
+            <circle cx="112" cy="240" r="5" fill="#3a2a20"/>
+            <circle cx="128" cy="240" r="5" fill="#3a2a20"/>
+            <circle cx="113.5" cy="238.2" r="1.5" fill="#fff"/>
+            <circle cx="129.5" cy="238.2" r="1.5" fill="#fff"/>
+            <ellipse cx="120" cy="293" rx="25" ry="6" fill="#e8d0c0" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line">"But then the door opened."</p>
+          <p class="page-num">p. 25 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fdf8f4;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf8f4"/>
+            <rect x="0" y="295" width="420" height="45" fill="#e8d4b8" opacity="0.45"/>
+            <!-- door, open, golden afternoon light flooding in -->
+            <rect x="70" y="18" width="230" height="310" rx="4" fill="#b89070"/>
+            <rect x="74" y="22" width="222" height="302" rx="3" fill="#c8a080"/>
+            <rect x="92" y="44" width="88" height="96" rx="3" fill="#b89070" opacity="0.42"/>
+            <rect x="196" y="44" width="88" height="96" rx="3" fill="#b89070" opacity="0.42"/>
+            <rect x="92" y="154" width="88" height="100" rx="3" fill="#b89070" opacity="0.42"/>
+            <rect x="196" y="154" width="88" height="100" rx="3" fill="#b89070" opacity="0.42"/>
+            <circle cx="82" cy="170" r="10" fill="#d4a050"/>
+            <circle cx="82" cy="170" r="6" fill="#c89040"/>
+            <!-- door open — golden light streaming in from the gap -->
+            <path d="M300 18 L380 10 L380 330 L300 328 Z" fill="#fce090" opacity="0.65"/>
+            <path d="M300 18 L340 12 L340 329 L300 328 Z" fill="#fce4a0" opacity="0.5"/>
+            <!-- light on floor -->
+            <path d="M300 328 L420 315 L420 340 L300 340 Z" fill="#fce090" opacity="0.35"/>
+            <!-- Jessie's silhouette entering, backpack still on -->
+            <ellipse cx="360" cy="220" rx="26" ry="40" fill="#a0c8e8" opacity="0.55"/>
+            <rect x="342" y="182" width="40" height="52" rx="8" fill="#6090d0" opacity="0.5"/>
+            <rect x="347" y="175" width="30" height="11" rx="5" fill="#5080c0" opacity="0.5"/>
+            <circle cx="360" cy="158" r="22" fill="#f5c8a8" opacity="0.55"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf8f4;">
+          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">The door opens. Golden light. Jessie at the threshold.</p>
+          <p class="page-num">p. 26 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">The warm light on the right page floods across the gutter and warms the left page too — the first warmth since the storm spread.</p>
+  </div>
+
+  <!-- SPREAD 14: pp 27–28 SHE CAME BACK -->
+  <div class="spread" id="s13">
+    <div class="spread-label">Pages 27–28 &nbsp;·&nbsp; She came back. I was there. That was enough.</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <path d="M0 305 Q210 285 420 298 L420 340 L0 340 Z" fill="#f0d8b8" opacity="0.4"/>
+            <!-- Jessie on floor, backpack still on, holding Pink -->
+            <!-- backpack -->
+            <rect x="218" y="118" width="62" height="78" rx="10" fill="#6090d0" opacity="0.82"/>
+            <rect x="225" y="110" width="48" height="13" rx="5" fill="#5080c0" opacity="0.82"/>
+            <rect x="232" y="132" width="36" height="28" rx="6" fill="#7098d8" stroke="#5080c0" stroke-width="1.2"/>
+            <!-- Jessie sitting, legs on floor -->
+            <ellipse cx="188" cy="248" rx="55" ry="38" fill="#a0c8e8" opacity="0.9"/>
+            <path d="M138" cy="278" Q118 305 110 322" stroke="#f5c8a8" stroke-width="15" fill="none" stroke-linecap="round"/>
+            <path d="M238 278 Q255 302 262 318" stroke="#f5c8a8" stroke-width="15" fill="none" stroke-linecap="round"/>
+            <ellipse cx="106" cy="324" rx="16" ry="7" fill="#c06060"/>
+            <ellipse cx="264" cy="322" rx="16" ry="7" fill="#c06060"/>
+            <!-- arms around Pink -->
+            <path d="M148 238 Q128 250 132 268" stroke="#f5c8a8" stroke-width="13" fill="none" stroke-linecap="round"/>
+            <path d="M228 238 Q248 250 244 268" stroke="#f5c8a8" stroke-width="13" fill="none" stroke-linecap="round"/>
+            <!-- Jessie head, eyes closed, peaceful, tired, home -->
+            <circle cx="188" cy="178" r="38" fill="#f5c8a8"/>
+            <path d="M162 164 Q188 153 214 161" fill="#7a5040"/>
+            <path d="M162 170 Q154 150 158 138 Q163 127 170 135" fill="none" stroke="#7a5040" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M214 169 Q222 149 218 137 Q213 126 206 134" fill="none" stroke="#7a5040" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- eyes closed, finally resting -->
+            <path d="M172 178 Q188 174 204 178" stroke="#3a2a20" stroke-width="2.2" fill="none"/>
+            <!-- small smile, home -->
+            <path d="M174 193 Q188 200 202 193" stroke="#c87060" stroke-width="2" fill="none"/>
+            <!-- Pink held against chest, eyes OUT at reader -->
+            <ellipse cx="188" cy="234" rx="32" ry="38" fill="#f0b8a8"/>
+            <circle cx="188" cy="198" r="26" fill="#f0b8a8"/>
+            <ellipse cx="178" cy="170" rx="8.5" ry="20" fill="#f0b8a8"/>
+            <ellipse cx="178" cy="170" rx="4.5" ry="15" fill="#f8d0c4"/>
+            <path d="M198 178 Q214 152 206 130 Q200 117 192 129 Q183 144 192 175 Z" fill="#f0b8a8"/>
+            <ellipse cx="188" cy="234" rx="19" ry="22" fill="#f8d0c4"/>
+            <!-- Pink's eyes, direct, warm, certain -->
+            <circle cx="175" cy="200" r="7" fill="#3a2a20"/>
+            <circle cx="201" cy="200" r="7" fill="#3a2a20"/>
+            <circle cx="177" cy="198" r="2.1" fill="#fff"/>
+            <circle cx="203" cy="198" r="2.1" fill="#fff"/>
+            <ellipse cx="188" cy="216" rx="5" ry="4" fill="#c87060"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line">"She came back."</p>
+          <p class="story-line">"I was there."</p>
+          <p class="story-line">"That was enough."</p>
+          <p class="page-num">p. 27 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fff8f2;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fff8f2"/>
+            <ellipse cx="210" cy="300" rx="280" ry="80" fill="#f0d8b8" opacity="0.2"/>
+            <!-- faint ghost of Pink, like a memory -->
+            <ellipse cx="210" cy="225" rx="30" ry="36" fill="#f0b8a8" opacity="0.3"/>
+            <circle cx="210" cy="192" r="24" fill="#f0b8a8" opacity="0.3"/>
+            <ellipse cx="201" cy="165" rx="7" ry="18" fill="#f0b8a8" opacity="0.3"/>
+            <ellipse cx="219" cy="165" rx="7" ry="18" fill="#f0b8a8" opacity="0.3"/>
+            <circle cx="200" cy="194" r="4.5" fill="#3a2a20" opacity="0.15"/>
+            <circle cx="220" cy="194" r="4.5" fill="#3a2a20" opacity="0.15"/>
+            <!-- closing text -->
+            <text x="210" y="68" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="17" fill="#b85040" opacity="0.82">Pink was just a bunny.</text>
+            <text x="210" y="96" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="17" fill="#b85040" opacity="0.82">But she was her bunny.</text>
+            <text x="210" y="124" text-anchor="middle" font-family="'Lora',serif" font-size="17" fill="#c87060" opacity="0.75">And that was everything.</text>
+            <!-- small star -->
+            <circle cx="210" cy="148" r="2.5" fill="#e8a090" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fff8f2;">
+          <p class="story-line" style="font-style:italic;color:#9a7060;font-size:0.9rem;">Pink was just a bunny. But she was <em>her</em> bunny. And that was everything.</p>
+          <p class="page-num">p. 28 — recto</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">Pink's eyes look directly at the reader on page 27 — the only moment in the book she truly holds your gaze. The closing reflection is quiet and spare on page 28.</p>
+  </div>
+
+  <!-- SPREAD 15: pp 29–30 back matter + endpaper -->
+  <div class="spread" id="s14">
+    <div class="spread-label">Pages 29–30 &nbsp;·&nbsp; About the author + Back endpaper</div>
+    <div class="book-spread">
+      <div class="page" style="background:#fdf4ef;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fdf4ef"/>
+            <!-- soft author page illustration -->
+            <ellipse cx="210" cy="185" rx="55" ry="55" fill="#f0b8a8" opacity="0.25"/>
+            <ellipse cx="210" cy="200" rx="35" ry="42" fill="#f0b8a8" opacity="0.35"/>
+            <circle cx="210" cy="165" r="28" fill="#f0b8a8" opacity="0.35"/>
+            <ellipse cx="200" cy="135" rx="8" ry="20" fill="#f0b8a8" opacity="0.35"/>
+            <ellipse cx="220" cy="135" rx="8" ry="20" fill="#f0b8a8" opacity="0.35"/>
+            <circle cx="200" cy="168" r="5" fill="#3a2a20" opacity="0.2"/>
+            <circle cx="220" cy="168" r="5" fill="#3a2a20" opacity="0.2"/>
+            <!-- about text in illustration -->
+            <text x="210" y="72" text-anchor="middle" font-family="'Lora',serif" font-size="16" font-weight="500" fill="#b85040" opacity="0.8">About the author</text>
+            <line x1="100" y1="80" x2="320" y2="80" stroke="#e8c8b8" stroke-width="1" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fdf4ef;">
+          <p class="story-line" style="font-size:0.8rem;color:#9a7060;">Michael Khela is a writer and illustrator. This book was inspired by a real pink bunny, and by all the children who know exactly what it means to carry something small and love it completely.</p>
+          <p class="page-num">p. 29 — verso</p>
+        </div>
+      </div>
+      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="page" style="background:#fce8d8;">
+        <div class="page-illo" style="height:340px;">
+          <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
+            <rect width="420" height="340" fill="#fce8d8"/>
+            <!-- same as front endpaper -->
+            <g opacity="0.55">
+              <ellipse cx="60" cy="55" rx="13" ry="10" fill="#e8a090"/><circle cx="60" cy="46" r="8" fill="#e8a090"/><ellipse cx="55" cy="36" rx="3" ry="9" fill="#e8a090"/><ellipse cx="65" cy="36" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="160" cy="45" rx="13" ry="10" fill="#d47868"/><circle cx="160" cy="36" r="8" fill="#d47868"/><ellipse cx="155" cy="26" rx="3" ry="9" fill="#d47868"/><ellipse cx="165" cy="26" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="260" cy="60" rx="13" ry="10" fill="#e8a090"/><circle cx="260" cy="51" r="8" fill="#e8a090"/><ellipse cx="255" cy="41" rx="3" ry="9" fill="#e8a090"/><ellipse cx="265" cy="41" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="370" cy="48" rx="13" ry="10" fill="#d47868"/><circle cx="370" cy="39" r="8" fill="#d47868"/><ellipse cx="365" cy="29" rx="3" ry="9" fill="#d47868"/><ellipse cx="375" cy="29" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="100" cy="145" rx="13" ry="10" fill="#d47868"/><circle cx="100" cy="136" r="8" fill="#d47868"/><ellipse cx="95" cy="126" rx="3" ry="9" fill="#d47868"/><ellipse cx="105" cy="126" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="210" cy="135" rx="13" ry="10" fill="#e8a090"/><circle cx="210" cy="126" r="8" fill="#e8a090"/><ellipse cx="205" cy="116" rx="3" ry="9" fill="#e8a090"/><ellipse cx="215" cy="116" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="320" cy="148" rx="13" ry="10" fill="#d47868"/><circle cx="320" cy="139" r="8" fill="#d47868"/><ellipse cx="315" cy="129" rx="3" ry="9" fill="#d47868"/><ellipse cx="325" cy="129" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="55" cy="240" rx="13" ry="10" fill="#e8a090"/><circle cx="55" cy="231" r="8" fill="#e8a090"/><ellipse cx="50" cy="221" rx="3" ry="9" fill="#e8a090"/><ellipse cx="60" cy="221" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="170" cy="248" rx="13" ry="10" fill="#d47868"/><circle cx="170" cy="239" r="8" fill="#d47868"/><ellipse cx="165" cy="229" rx="3" ry="9" fill="#d47868"/><ellipse cx="175" cy="229" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="290" cy="235" rx="13" ry="10" fill="#e8a090"/><circle cx="290" cy="226" r="8" fill="#e8a090"/><ellipse cx="285" cy="216" rx="3" ry="9" fill="#e8a090"/><ellipse cx="295" cy="216" rx="3" ry="9" fill="#e8a090"/>
+            </g>
+            <!-- THE hidden bunny with backpack -->
+            <ellipse cx="370" cy="240" rx="13" ry="10" fill="#d47868" opacity="0.55"/>
+            <circle cx="370" cy="231" r="8" fill="#d47868" opacity="0.55"/>
+            <ellipse cx="365" cy="221" rx="3" ry="9" fill="#d47868" opacity="0.55"/>
+            <ellipse cx="375" cy="221" rx="3" ry="9" fill="#d47868" opacity="0.55"/>
+            <!-- tiny backpack on this one bunny -->
+            <rect x="363" y="233" width="12" height="9" rx="3" fill="#6090d0" opacity="0.85"/>
+            <rect x="364" y="229" width="10" height="5" rx="2" fill="#5080c0" opacity="0.85"/>
+            <!-- stars -->
+            <circle cx="128" cy="93" r="2.2" fill="#c87060" opacity="0.45"/>
+            <circle cx="330" cy="98" r="1.8" fill="#c87060" opacity="0.4"/>
+            <circle cx="78" cy="195" r="1.8" fill="#c87060" opacity="0.4"/>
+            <circle cx="238" cy="183" r="2.2" fill="#c87060" opacity="0.45"/>
+            <circle cx="125" cy="293" r="1.8" fill="#c87060" opacity="0.4"/>
+            <circle cx="348" cy="298" r="2.2" fill="#c87060" opacity="0.45"/>
+          </svg>
+        </div>
+        <div class="page-text" style="background:#fce8d8;">
+          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Back endpaper — look closely. One bunny has a tiny backpack.</p>
+          <p class="page-num">p. 30 — glued to inside back cover</p>
+        </div>
+      </div>
+    </div>
+    <p class="spread-note">The back endpaper mirrors the front. One bunny in the lower right has a backpack. It rewards readers who look twice.</p>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-row">
+  <button class="nav-btn" id="prev-btn" onclick="go(-1)" disabled>← Back</button>
+  <span class="spread-counter" id="counter">Spread 1 of 15</span>
+  <button class="nav-btn" id="next-btn" onclick="go(1)">Next →</button>
+</div>
+<div class="dots" id="dots"></div>
+
+<script>
+var cur = 0, total = 15;
+var dotsEl = document.getElementById('dots');
+for(var i=0;i<total;i++){
+  var d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.setAttribute('data-i',i);
+  (function(x){d.onclick=function(){goTo(x)}})(i);
+  dotsEl.appendChild(d);
+}
+function goTo(i){
+  document.getElementById('s'+cur).classList.remove('active');
+  document.querySelectorAll('.dot')[cur].classList.remove('active');
+  cur=i;
+  document.getElementById('s'+cur).classList.add('active');
+  document.querySelectorAll('.dot')[cur].classList.add('active');
+  document.getElementById('prev-btn').disabled=cur===0;
+  document.getElementById('next-btn').disabled=cur===total-1;
+  document.getElementById('counter').textContent='Spread '+(cur+1)+' of '+total;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){if(cur+d>=0&&cur+d<total)goTo(cur+d);}
+</script>
+</body>
+</html>
