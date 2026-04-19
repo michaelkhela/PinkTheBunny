@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pink — by Michael Khela</title>
+<title>Pink the Bunny — by Michael Khela</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -131,19 +131,8 @@
 
   .story-line.dark { color: #f0e0d0; }
 
-  .page-num {
-    font-size: 0.65rem;
-    color: #c8a890;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
-  }
-
-  .page-num.dark { color: #6070a0; }
-
   .spine {
-    width: 20px;
+    width: 10px;
     flex-shrink: 0;
     background: #c8a070;
     position: relative;
@@ -167,18 +156,7 @@
     background: rgba(0,0,0,0.1);
   }
 
-  .spine-text {
-    font-size: 8px;
-    color: #a08050;
-    writing-mode: vertical-rl;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 700;
-    opacity: 0.6;
-  }
-
   .spine.dark-spine { background: #1a1428; }
-  .spine.dark-spine .spine-text { color: #4a3858; }
 
   .spread-note {
     font-size: 0.72rem;
@@ -250,9 +228,68 @@
 <p class="book-byline">by Michael Khela</p>
 
 <div class="book-viewer">
-
-  <!-- SPREAD 1: pp 1–2 -->
+  <!-- FRONT COVER -->
   <div class="spread active" id="s0">
+    <div class="book-spread" style="min-height:520px;">
+      <div class="page" style="background:#b85040; flex:2;">
+        <div class="page-illo">
+          <svg viewBox="0 0 840 520" preserveAspectRatio="xMidYMid slice">
+            <rect width="840" height="520" fill="#b85040"/>
+            <!-- soft vignette -->
+            <ellipse cx="420" cy="520" rx="600" ry="200" fill="#903828" opacity="0.4"/>
+            <ellipse cx="420" cy="0" rx="500" ry="150" fill="#903828" opacity="0.25"/>
+            <!-- scattered small stars -->
+            <circle cx="80" cy="60" r="2" fill="#f0d8c8" opacity="0.35"/>
+            <circle cx="200" cy="40" r="1.5" fill="#f0d8c8" opacity="0.3"/>
+            <circle cx="640" cy="55" r="2" fill="#f0d8c8" opacity="0.35"/>
+            <circle cx="760" cy="80" r="1.5" fill="#f0d8c8" opacity="0.3"/>
+            <circle cx="100" cy="430" r="2" fill="#f0d8c8" opacity="0.3"/>
+            <circle cx="730" cy="450" r="2" fill="#f0d8c8" opacity="0.3"/>
+            <circle cx="320" cy="480" r="1.5" fill="#f0d8c8" opacity="0.25"/>
+            <circle cx="530" cy="470" r="1.5" fill="#f0d8c8" opacity="0.25"/>
+            <!-- Pink, large, centered -->
+            <!-- body -->
+            <ellipse cx="420" cy="310" rx="80" ry="95" fill="#f0b8a8"/>
+            <!-- head -->
+            <circle cx="420" cy="210" r="70" fill="#f0b8a8"/>
+            <!-- straight ear -->
+            <ellipse cx="395" cy="130" rx="20" ry="52" fill="#f0b8a8"/>
+            <ellipse cx="395" cy="130" rx="11" ry="40" fill="#f8d0c4"/>
+            <!-- flopped ear -->
+            <path d="M445 158 Q500 95 480 45 Q466 18 450 38 Q432 62 445 155 Z" fill="#f0b8a8"/>
+            <path d="M442 154 Q492 96 474 48 Q461 23 447 42 Q431 65 442 152 Z" fill="#f8d0c4"/>
+            <!-- belly -->
+            <ellipse cx="420" cy="312" rx="50" ry="62" fill="#f8d0c4"/>
+            <!-- eyes — button, direct, large -->
+            <circle cx="400" cy="212" r="14" fill="#3a2a20"/>
+            <circle cx="440" cy="212" r="14" fill="#3a2a20"/>
+            <circle cx="404" cy="207" r="4.5" fill="#fff"/>
+            <circle cx="444" cy="207" r="4.5" fill="#fff"/>
+            <!-- nose -->
+            <ellipse cx="420" cy="238" rx="10" ry="8" fill="#c87060"/>
+            <!-- smile -->
+            <path d="M408 250 Q420 260 432 250" stroke="#c87060" stroke-width="3.5" fill="none"/>
+            <!-- whiskers -->
+            <line x1="365" y1="234" x2="408" y2="239" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
+            <line x1="365" y1="244" x2="408" y2="244" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
+            <line x1="432" y1="239" x2="475" y2="234" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
+            <line x1="432" y1="244" x2="475" y2="244" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
+            <!-- paws -->
+            <ellipse cx="352" cy="354" rx="36" ry="24" fill="#f0b8a8"/>
+            <ellipse cx="488" cy="354" rx="36" ry="24" fill="#f0b8a8"/>
+            <!-- tail -->
+            <circle cx="498" cy="320" r="30" fill="#fce8d8" stroke="#f0b8a8" stroke-width="2"/>
+            <!-- title -->
+            <text x="420" y="455" text-anchor="middle" font-family="'Lora',serif" font-size="88" font-weight="500" fill="#fdf6f0" opacity="0.97">Pink</text>
+            <!-- author -->
+            <text x="420" y="495" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="18" fill="#f0d0c0" letter-spacing="3" opacity="0.85">by michael khela</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SPREAD 1: pp 1–2 -->
+  <div class="spread active" id="s1">
     <div class="spread-label">Pages 1–2 &nbsp;·&nbsp; Front endpaper + Title page</div>
     <div class="book-spread">
       <!-- Page 1: Front endpaper -->
@@ -296,12 +333,10 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fce8d8;">
-          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Front endpaper</p>
-          <p class="page-num">p. 1 — verso</p>
         </div>
       </div>
       <!-- Spine -->
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <!-- Page 2: Title -->
       <div class="page" style="background:#fff8f2;">
         <div class="page-illo" style="height:340px;">
@@ -352,16 +387,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
-          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Title page</p>
-          <p class="page-num">p. 2 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Front endpaper (left) glued to inside cover. Title page (right) is the first thing the reader sees on opening.</p>
   </div>
 
   <!-- SPREAD 2: pp 3–4 -->
-  <div class="spread" id="s1">
+  <div class="spread" id="s2">
     <div class="spread-label">Pages 3–4 &nbsp;·&nbsp; Dedication + Pink introduces herself</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf4ef;">
@@ -386,11 +418,9 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fdf4ef;">
-          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Dedication</p>
-          <p class="page-num">p. 3 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fdf6f0;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -433,15 +463,13 @@
         <div class="page-text" style="background:#fdf6f0;">
           <p class="story-line">"My name is Pink."</p>
           <p class="story-line">"I am a bunny."</p>
-          <p class="page-num">p. 4 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Pink alone on the shelf. Waiting, though she doesn't know it yet.</p>
   </div>
 
   <!-- SPREAD 3: pp 5–6 -->
-  <div class="spread" id="s2">
+  <div class="spread" id="s3">
     <div class="spread-label">Pages 5–6 &nbsp;·&nbsp; Jessie's hands reach down</div>
     <div class="book-spread">
       <div class="page" style="background:#fff5ef;">
@@ -466,11 +494,9 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fff5ef;">
-          <p class="story-line" style="color:#c8a080;font-style:italic;font-size:0.8rem;">Jessie's hands, reaching down</p>
-          <p class="page-num">p. 5 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fff5ef;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -502,15 +528,13 @@
         </div>
         <div class="page-text" style="background:#fff5ef;">
           <p class="story-line">"Then Jessie came home."</p>
-          <p class="page-num">p. 6 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Full bleed spread. The hands stay safely left of the spine. Pink looks upward from the right.</p>
   </div>
 
   <!-- SPREAD 4: pp 7–8 -->
-  <div class="spread" id="s3">
+  <div class="spread" id="s4">
     <div class="spread-label">Pages 7–8 &nbsp;·&nbsp; After that, I went everywhere</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf6f0;">
@@ -566,10 +590,9 @@
         </div>
         <div class="page-text" style="background:#fdf6f0;">
           <p class="story-line">"After that, I went everywhere."</p>
-          <p class="page-num">p. 7 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fdf6f0;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -614,16 +637,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fce8d8;">
-          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">High chair — Pink watching Jessie eat</p>
-          <p class="page-num">p. 8 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Three vignette panels across two pages. The gutter falls between panels naturally.</p>
   </div>
 
   <!-- SPREAD 5: pp 9–10 -->
-  <div class="spread" id="s4">
+  <div class="spread" id="s5">
     <div class="spread-label">Pages 9–10 &nbsp;·&nbsp; Most important thing in the world</div>
     <div class="book-spread">
       <div class="page" style="background:#fff8f2;">
@@ -667,10 +687,9 @@
         <div class="page-text" style="background:#fff8f2;">
           <p class="story-line">"Jessie carried me like I was the most important thing in the world."</p>
           <p class="story-line">"I think I was."</p>
-          <p class="page-num">p. 9 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fff8f2;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -692,16 +711,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
-          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">The park extends — background breathes</p>
-          <p class="page-num">p. 10 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Full bleed park scene. Jessie and Pink stay safely on the left page.</p>
   </div>
 
   <!-- SPREAD 6: pp 11–12 dark storm -->
-  <div class="spread" id="s5">
+  <div class="spread" id="s6">
     <div class="spread-label">Pages 11–12 &nbsp;·&nbsp; On hard nights</div>
     <div class="book-spread">
       <div class="page" style="background:#1e2a3a;">
@@ -750,10 +766,9 @@
         </div>
         <div class="page-text" style="background:#1e2a3a;">
           <p class="story-line dark">"On hard nights, she held me tighter."</p>
-          <p class="page-num dark">p. 11 — verso</p>
         </div>
       </div>
-      <div class="spine dark-spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#141e2e;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -783,15 +798,13 @@
         <div class="page-text" style="background:#141e2e;">
           <p class="story-line dark">"I couldn't make the thunder stop."</p>
           <p class="story-line dark">"But I stayed."</p>
-          <p class="page-num dark">p. 12 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Dark spread. Both pages unified in darkness. Pink's eye is the only warmth.</p>
   </div>
 
   <!-- SPREAD 7: pp 13–14 bedtime -->
-  <div class="spread" id="s6">
+  <div class="spread" id="s7">
     <div class="spread-label">Pages 13–14 &nbsp;·&nbsp; Every night, we went to sleep together</div>
     <div class="book-spread">
       <div class="page" style="background:#2a1e2e;">
@@ -848,10 +861,9 @@
         </div>
         <div class="page-text" style="background:#2a1e2e;">
           <p class="story-line dark">"Every night, we went to sleep together."</p>
-          <p class="page-num dark">p. 13 — verso</p>
         </div>
       </div>
-      <div class="spine dark-spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#2a1e2e;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -891,15 +903,13 @@
         <div class="page-text" style="background:#2a1e2e;">
           <p class="story-line dark">"I know every part of her."</p>
           <p class="story-line dark">"The way she smells. The sound she makes when she's almost asleep."</p>
-          <p class="page-num dark">p. 14 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Warm and intimate. Both pages golden-dark. Pink's eyes look out at the reader on page 14.</p>
   </div>
 
   <!-- SPREAD 8: pp 15–16 -->
-  <div class="spread" id="s7">
+  <div class="spread" id="s8">
     <div class="spread-label">Pages 15–16 &nbsp;·&nbsp; Then one morning, everything felt different</div>
     <div class="book-spread">
       <div class="page" style="background:#fff8f2;">
@@ -943,10 +953,9 @@
         </div>
         <div class="page-text" style="background:#fff8f2;">
           <p class="story-line">"Then one morning, everything felt different."</p>
-          <p class="page-num">p. 15 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fff8f2;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -977,16 +986,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
-          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">Pink on the bed, watching — for the first time, not being carried</p>
-          <p class="page-num">p. 16 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">The gutter first separates Jessie (left) from Pink (right). A quiet visual foreshadowing.</p>
   </div>
 
   <!-- SPREAD 9: pp 17–18 THE GOODBYE -->
-  <div class="spread" id="s8">
+  <div class="spread" id="s9">
     <div class="spread-label">Pages 17–18 &nbsp;·&nbsp; The goodbye — gutter does emotional work</div>
     <div class="book-spread">
       <div class="page" style="background:#fff8f2;">
@@ -1019,10 +1025,9 @@
         </div>
         <div class="page-text" style="background:#fff8f2;">
           <p class="story-line">"Jessie picked me up."</p>
-          <p class="page-num">p. 17 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fff8f2;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1058,15 +1063,13 @@
         </div>
         <div class="page-text" style="background:#fff8f2;">
           <p class="story-line">"Then she put me down."</p>
-          <p class="page-num">p. 18 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">The spine physically separates these two moments. Held (left) — set down (right). The binding does the emotional work.</p>
   </div>
 
   <!-- SPREAD 10: pp 19–20 door closes -->
-  <div class="spread" id="s9">
+  <div class="spread" id="s10">
     <div class="spread-label">Pages 19–20 &nbsp;·&nbsp; She walked out the door. Without me.</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf8f4;">
@@ -1098,10 +1101,9 @@
         <div class="page-text" style="background:#fdf8f4;">
           <p class="story-line">"She walked out the door."</p>
           <p class="story-line">"Without me."</p>
-          <p class="page-num">p. 19 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fdf8f4;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1123,16 +1125,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fdf8f4;">
-          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">The door, almost shut. The hallway empty.</p>
-          <p class="page-num">p. 20 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Maximum white space. Pink is tiny on the left. The door is closed on the right. Emptiness is the art.</p>
   </div>
 
   <!-- SPREAD 11: pp 21–22 THE CENTER -->
-  <div class="spread" id="s10">
+  <div class="spread" id="s11">
     <div class="spread-label">Pages 21–22 &nbsp;·&nbsp; I waited. — The emotional center of the book</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf8f4;">
@@ -1148,10 +1147,9 @@
         </div>
         <div class="page-text" style="background:#fdf8f4;">
           <p class="story-line" style="font-size:1.2rem; letter-spacing:0.04em;">"I waited."</p>
-          <p class="page-num">p. 21 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fdf8f4;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1179,15 +1177,13 @@
         </div>
         <div class="page-text" style="background:#fdf8f4;">
           <p class="story-line" style="color:#c8a080;font-style:italic;font-size:0.8rem;">Pink alone. Surrounded by white space. Time passes.</p>
-          <p class="page-num">p. 22 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">The most important spread. One word on the left. Pink tiny and alone on the right. Let the silence be the art.</p>
   </div>
 
   <!-- SPREAD 12: pp 23–24 time passing -->
-  <div class="spread" id="s11">
+  <div class="spread" id="s12">
     <div class="spread-label">Pages 23–24 &nbsp;·&nbsp; I don't know what happened at school</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf8f4;">
@@ -1230,10 +1226,9 @@
         </div>
         <div class="page-text" style="background:#fdf8f4;">
           <p class="story-line">"I don't know what happened at school."</p>
-          <p class="page-num">p. 23 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fdf8f4;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1250,15 +1245,13 @@
         </div>
         <div class="page-text" style="background:#fdf8f4;">
           <p class="story-line">"I wasn't there."</p>
-          <p class="page-num">p. 24 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">The clock shows time has passed. The light has shifted. Pink hasn't moved. The right page is just empty room — her absence fills it.</p>
   </div>
 
   <!-- SPREAD 13: pp 25–26 door opens -->
-  <div class="spread" id="s12">
+  <div class="spread" id="s13">
     <div class="spread-label">Pages 25–26 &nbsp;·&nbsp; But then the door opened</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf8f4;">
@@ -1288,10 +1281,9 @@
         </div>
         <div class="page-text" style="background:#fdf8f4;">
           <p class="story-line">"But then the door opened."</p>
-          <p class="page-num">p. 25 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fdf8f4;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1319,16 +1311,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fdf8f4;">
-          <p class="story-line" style="color:#b89080;font-style:italic;font-size:0.8rem;">The door opens. Golden light. Jessie at the threshold.</p>
-          <p class="page-num">p. 26 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">The warm light on the right page floods across the gutter and warms the left page too — the first warmth since the storm spread.</p>
   </div>
 
   <!-- SPREAD 14: pp 27–28 SHE CAME BACK -->
-  <div class="spread" id="s13">
+  <div class="spread" id="s14">
     <div class="spread-label">Pages 27–28 &nbsp;·&nbsp; She came back. I was there. That was enough.</div>
     <div class="book-spread">
       <div class="page" style="background:#fff8f2;">
@@ -1378,10 +1367,9 @@
           <p class="story-line">"She came back."</p>
           <p class="story-line">"I was there."</p>
           <p class="story-line">"That was enough."</p>
-          <p class="page-num">p. 27 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fff8f2;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1403,16 +1391,13 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
-          <p class="story-line" style="font-style:italic;color:#9a7060;font-size:0.9rem;">Pink was just a bunny. But she was <em>her</em> bunny. And that was everything.</p>
-          <p class="page-num">p. 28 — recto</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">Pink's eyes look directly at the reader on page 27 — the only moment in the book she truly holds your gaze. The closing reflection is quiet and spare on page 28.</p>
   </div>
 
   <!-- SPREAD 15: pp 29–30 back matter + endpaper -->
-  <div class="spread" id="s14">
+  <div class="spread" id="s15">
     <div class="spread-label">Pages 29–30 &nbsp;·&nbsp; About the author + Back endpaper</div>
     <div class="book-spread">
       <div class="page" style="background:#fdf4ef;">
@@ -1434,10 +1419,9 @@
         </div>
         <div class="page-text" style="background:#fdf4ef;">
           <p class="story-line" style="font-size:0.8rem;color:#9a7060;">Michael Khela is a writer and illustrator. This book was inspired by a real pink bunny, and by all the children who know exactly what it means to carry something small and love it completely.</p>
-          <p class="page-num">p. 29 — verso</p>
         </div>
       </div>
-      <div class="spine"><span class="spine-text">spine</span></div>
+      <div class="spine"><span class="spine-text"></span></div>
       <div class="page" style="background:#fce8d8;">
         <div class="page-illo" style="height:340px;">
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
@@ -1473,14 +1457,53 @@
           </svg>
         </div>
         <div class="page-text" style="background:#fce8d8;">
-          <p class="story-line" style="font-style:italic;color:#b89080;font-size:0.8rem;">Back endpaper — look closely. One bunny has a tiny backpack.</p>
-          <p class="page-num">p. 30 — glued to inside back cover</p>
         </div>
       </div>
     </div>
-    <p class="spread-note">The back endpaper mirrors the front. One bunny in the lower right has a backpack. It rewards readers who look twice.</p>
   </div>
-
+  <!-- BACK COVER -->
+  <div class="spread" id="s16">
+    <div class="book-spread" style="min-height:520px;">
+      <div class="page" style="background:#fce8d8; flex:2;">
+        <div class="page-illo">
+          <svg viewBox="0 0 840 520" preserveAspectRatio="xMidYMid slice">
+            <rect width="840" height="520" fill="#fce8d8"/>
+            <!-- endpaper bunny pattern, faint -->
+            <g opacity="0.2">
+              <ellipse cx="80" cy="80" rx="13" ry="10" fill="#e8a090"/><circle cx="80" cy="71" r="8" fill="#e8a090"/><ellipse cx="75" cy="61" rx="3" ry="9" fill="#e8a090"/><ellipse cx="85" cy="61" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="220" cy="70" rx="13" ry="10" fill="#d47868"/><circle cx="220" cy="61" r="8" fill="#d47868"/><ellipse cx="215" cy="51" rx="3" ry="9" fill="#d47868"/><ellipse cx="225" cy="51" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="420" cy="85" rx="13" ry="10" fill="#e8a090"/><circle cx="420" cy="76" r="8" fill="#e8a090"/><ellipse cx="415" cy="66" rx="3" ry="9" fill="#e8a090"/><ellipse cx="425" cy="66" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="620" cy="75" rx="13" ry="10" fill="#d47868"/><circle cx="620" cy="66" r="8" fill="#d47868"/><ellipse cx="615" cy="56" rx="3" ry="9" fill="#d47868"/><ellipse cx="625" cy="56" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="760" cy="82" rx="13" ry="10" fill="#e8a090"/><circle cx="760" cy="73" r="8" fill="#e8a090"/><ellipse cx="755" cy="63" rx="3" ry="9" fill="#e8a090"/><ellipse cx="765" cy="63" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="150" cy="420" rx="13" ry="10" fill="#d47868"/><circle cx="150" cy="411" r="8" fill="#d47868"/><ellipse cx="145" cy="401" rx="3" ry="9" fill="#d47868"/><ellipse cx="155" cy="401" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="340" cy="435" rx="13" ry="10" fill="#e8a090"/><circle cx="340" cy="426" r="8" fill="#e8a090"/><ellipse cx="335" cy="416" rx="3" ry="9" fill="#e8a090"/><ellipse cx="345" cy="416" rx="3" ry="9" fill="#e8a090"/>
+              <ellipse cx="540" cy="425" rx="13" ry="10" fill="#d47868"/><circle cx="540" cy="416" r="8" fill="#d47868"/><ellipse cx="535" cy="406" rx="3" ry="9" fill="#d47868"/><ellipse cx="545" cy="406" rx="3" ry="9" fill="#d47868"/>
+              <ellipse cx="700" cy="440" rx="13" ry="10" fill="#e8a090"/><circle cx="700" cy="431" r="8" fill="#e8a090"/><ellipse cx="695" cy="421" rx="3" ry="9" fill="#e8a090"/><ellipse cx="705" cy="421" rx="3" ry="9" fill="#e8a090"/>
+            </g>
+            <!-- center blurb box -->
+            <rect x="220" y="160" width="400" height="200" rx="14" fill="#fff8f2" opacity="0.85"/>
+            <!-- blurb text -->
+            <text x="420" y="210" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#7a5040">Pink was just a bunny.</text>
+            <text x="420" y="235" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#7a5040">But she was Jessie's bunny.</text>
+            <text x="420" y="260" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#7a5040">She went everywhere.</text>
+            <text x="420" y="285" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#7a5040">She stayed on the hard nights.</text>
+            <text x="420" y="310" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#7a5040">She waited.</text>
+            <text x="420" y="340" text-anchor="middle" font-family="'Lora',serif" font-size="13" fill="#c8a080" letter-spacing="1">And that was everything.</text>
+            <!-- small Pink at bottom center -->
+            <ellipse cx="420" cy="478" rx="22" ry="26" fill="#f0b8a8" opacity="0.7"/>
+            <circle cx="420" cy="454" r="17" fill="#f0b8a8" opacity="0.7"/>
+            <ellipse cx="412" cy="435" rx="5" ry="13" fill="#f0b8a8" opacity="0.7"/>
+            <ellipse cx="412" cy="435" rx="3" ry="10" fill="#f8d0c4" opacity="0.7"/>
+            <path d="M428 441 Q438 426 433 414 Q428 405 422 414 Q415 424 422 440 Z" fill="#f0b8a8" opacity="0.7"/>
+            <circle cx="413" cy="456" r="4" fill="#3a2a20" opacity="0.5"/>
+            <circle cx="427" cy="456" r="4" fill="#3a2a20" opacity="0.5"/>
+            <circle cx="414.2" cy="454.5" r="1.2" fill="#fff" opacity="0.7"/>
+            <circle cx="428.2" cy="454.5" r="1.2" fill="#fff" opacity="0.7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Navigation -->
@@ -1492,7 +1515,7 @@
 <div class="dots" id="dots"></div>
 
 <script>
-var cur = 0, total = 15;
+var cur = 0, total = 17;
 var dotsEl = document.getElementById('dots');
 for(var i=0;i<total;i++){
   var d=document.createElement('div');
