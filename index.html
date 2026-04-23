@@ -12,8 +12,8 @@
     --cream: #fdf6f0;
     --warm: #f5ede5;
     --muted: #9a7060;
-    --pink-bunny: #f0b8a8;
-    --pink-dark: #e89888;
+    --pink-bunny: #d966a0;
+    --pink-dark: #b83c78;
     --skin: #f5c8a8;
     --brown-dark: #3a2a20;
     --brown-mid: #7a5040;
@@ -248,37 +248,71 @@
             <circle cx="320" cy="480" r="1.5" fill="#f0d8c8" opacity="0.25"/>
             <circle cx="530" cy="470" r="1.5" fill="#f0d8c8" opacity="0.25"/>
             <!-- Pink, large, centered -->
+            <!-- tail drawn first so it sits behind body -->
+            <circle cx="498" cy="320" r="32" fill="#ffe8f4" stroke="#d966a0" stroke-width="2"/>
+            <!-- body shading -->
+            <defs>
+              <radialGradient id="bodyGrad" cx="40%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#e878b0"/>
+                <stop offset="100%" stop-color="#b83c80"/>
+              </radialGradient>
+              <radialGradient id="headGrad" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#e878b0"/>
+                <stop offset="100%" stop-color="#b83c80"/>
+              </radialGradient>
+            </defs>
             <!-- body -->
-            <ellipse cx="420" cy="310" rx="80" ry="95" fill="#f0b8a8"/>
+            <ellipse cx="420" cy="310" rx="80" ry="95" fill="url(#bodyGrad)"/>
             <!-- head -->
-            <circle cx="420" cy="210" r="70" fill="#f0b8a8"/>
-            <!-- straight ear -->
-            <ellipse cx="395" cy="130" rx="20" ry="52" fill="#f0b8a8"/>
-            <ellipse cx="395" cy="130" rx="11" ry="40" fill="#f8d0c4"/>
-            <!-- flopped ear -->
-            <path d="M445 158 Q500 95 480 45 Q466 18 450 38 Q432 62 445 155 Z" fill="#f0b8a8"/>
-            <path d="M442 154 Q492 96 474 48 Q461 23 447 42 Q431 65 442 152 Z" fill="#f8d0c4"/>
+            <circle cx="420" cy="210" r="70" fill="url(#headGrad)"/>
+            <!-- straight ear with satin inner -->
+            <ellipse cx="395" cy="130" rx="20" ry="52" fill="#d966a0"/>
+            <ellipse cx="395" cy="130" rx="12" ry="42" fill="#f5e0ea"/>
+            <ellipse cx="395" cy="130" rx="7" ry="33" fill="#ffe8f2"/>
+            <!-- flopped ear with satin inner -->
+            <path d="M445 158 Q500 95 480 45 Q466 18 450 38 Q432 62 445 155 Z" fill="#d966a0"/>
+            <path d="M444 155 Q495 97 476 49 Q463 24 449 42 Q433 65 444 153 Z" fill="#f5e0ea"/>
+            <path d="M443 152 Q491 99 473 52 Q461 28 450 45 Q435 67 443 150 Z" fill="#ffe8f2"/>
+            <!-- pink ribbon on ear top -->
+            <ellipse cx="476" cy="50" rx="12" ry="8" fill="#ff80b8" opacity="0.9" transform="rotate(-30,476,50)"/>
+            <ellipse cx="464" cy="44" rx="10" ry="7" fill="#ff99c8" opacity="0.85" transform="rotate(-30,464,44)"/>
+            <circle cx="470" cy="47" r="5" fill="#ff60a8"/>
             <!-- belly -->
-            <ellipse cx="420" cy="312" rx="50" ry="62" fill="#f8d0c4"/>
-            <!-- eyes — button, direct, large -->
-            <circle cx="400" cy="212" r="14" fill="#3a2a20"/>
-            <circle cx="440" cy="212" r="14" fill="#3a2a20"/>
-            <circle cx="404" cy="207" r="4.5" fill="#fff"/>
-            <circle cx="444" cy="207" r="4.5" fill="#fff"/>
-            <!-- nose -->
-            <ellipse cx="420" cy="238" rx="10" ry="8" fill="#c87060"/>
+            <ellipse cx="420" cy="312" rx="50" ry="62" fill="#fce8f2"/>
+            <!-- fur texture dots -->
+            <circle cx="390" cy="190" r="2.5" fill="#e060a0" opacity="0.25"/>
+            <circle cx="450" cy="185" r="2.5" fill="#e060a0" opacity="0.25"/>
+            <circle cx="410" cy="165" r="2" fill="#e060a0" opacity="0.2"/>
+            <circle cx="430" cy="168" r="2" fill="#e060a0" opacity="0.2"/>
+            <circle cx="380" cy="250" r="3" fill="#c03878" opacity="0.15"/>
+            <circle cx="460" cy="245" r="3" fill="#c03878" opacity="0.15"/>
+            <!-- eyes — large black buttons with shine -->
+            <circle cx="400" cy="212" r="15" fill="#1a1210"/>
+            <circle cx="440" cy="212" r="15" fill="#1a1210"/>
+            <!-- main highlight -->
+            <circle cx="405" cy="206" r="5" fill="#fff"/>
+            <circle cx="445" cy="206" r="5" fill="#fff"/>
+            <!-- small secondary highlight -->
+            <circle cx="395" cy="216" r="2" fill="#fff" opacity="0.5"/>
+            <circle cx="435" cy="216" r="2" fill="#fff" opacity="0.5"/>
+            <!-- nose — red heart/oval embroidered shape -->
+            <ellipse cx="420" cy="238" rx="11" ry="9" fill="#cc2244"/>
+            <ellipse cx="420" cy="235" rx="7" ry="5" fill="#e03355" opacity="0.7"/>
             <!-- smile -->
-            <path d="M408 250 Q420 260 432 250" stroke="#c87060" stroke-width="3.5" fill="none"/>
+            <path d="M408 250 Q420 262 432 250" stroke="#cc2244" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <!-- cheek blush -->
+            <ellipse cx="378" cy="230" rx="16" ry="10" fill="#ff80a8" opacity="0.2"/>
+            <ellipse cx="462" cy="230" rx="16" ry="10" fill="#ff80a8" opacity="0.2"/>
             <!-- whiskers -->
-            <line x1="365" y1="234" x2="408" y2="239" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
-            <line x1="365" y1="244" x2="408" y2="244" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
-            <line x1="432" y1="239" x2="475" y2="234" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
-            <line x1="432" y1="244" x2="475" y2="244" stroke="#f0d0c0" stroke-width="1.5" opacity="0.5"/>
-            <!-- paws -->
-            <ellipse cx="352" cy="354" rx="36" ry="24" fill="#f0b8a8"/>
-            <ellipse cx="488" cy="354" rx="36" ry="24" fill="#f0b8a8"/>
-            <!-- tail -->
-            <circle cx="498" cy="320" r="30" fill="#fce8d8" stroke="#f0b8a8" stroke-width="2"/>
+            <line x1="362" y1="232" x2="408" y2="237" stroke="#ffe0f0" stroke-width="1.8" opacity="0.7"/>
+            <line x1="362" y1="243" x2="408" y2="242" stroke="#ffe0f0" stroke-width="1.8" opacity="0.7"/>
+            <line x1="432" y1="237" x2="478" y2="232" stroke="#ffe0f0" stroke-width="1.8" opacity="0.7"/>
+            <line x1="432" y1="242" x2="478" y2="243" stroke="#ffe0f0" stroke-width="1.8" opacity="0.7"/>
+            <!-- paws with white pads -->
+            <ellipse cx="352" cy="354" rx="36" ry="24" fill="#d966a0"/>
+            <ellipse cx="352" cy="358" rx="26" ry="14" fill="#ffe8f4"/>
+            <ellipse cx="488" cy="354" rx="36" ry="24" fill="#d966a0"/>
+            <ellipse cx="488" cy="358" rx="26" ry="14" fill="#ffe8f4"/>
             <!-- title -->
             <text x="420" y="470" text-anchor="middle" font-family="'Lora',serif" font-size="88" font-weight="500" fill="#fdf6f0" opacity="0.97">Pink</text>
             <!-- author -->
@@ -346,24 +380,26 @@
             <!-- shelf -->
             <rect x="60" y="230" width="300" height="12" rx="4" fill="#d4b898"/>
             <rect x="60" y="241" width="300" height="5" rx="2" fill="#c4a880"/>
+            <!-- tail drawn first so it sits behind body -->
+            <circle cx="248" cy="234" r="14" fill="#fff8f2" stroke="#d966a0" stroke-width="1.5"/>
             <!-- Pink on shelf, centered, one ear flopped -->
-            <ellipse cx="210" cy="222" rx="38" ry="45" fill="#f0b8a8"/>
-            <circle cx="210" cy="180" r="30" fill="#f0b8a8"/>
+            <ellipse cx="210" cy="222" rx="38" ry="45" fill="#d966a0"/>
+            <circle cx="210" cy="180" r="30" fill="#d966a0"/>
             <!-- straight ear -->
-            <ellipse cx="196" cy="148" rx="9" ry="24" fill="#f0b8a8"/>
-            <ellipse cx="196" cy="148" rx="5" ry="18" fill="#f8d0c4"/>
+            <ellipse cx="196" cy="148" rx="9" ry="24" fill="#d966a0"/>
+            <ellipse cx="196" cy="148" rx="5" ry="18" fill="#fff0f6"/>
             <!-- flopped ear -->
-            <path d="M224 162 Q248 130 238 105 Q231 93 222 107 Q213 122 222 158 Z" fill="#f0b8a8"/>
-            <path d="M221 158 Q243 130 235 108 Q229 97 222 109 Q215 123 221 156 Z" fill="#f8d0c4"/>
+            <path d="M224 162 Q248 130 238 105 Q231 93 222 107 Q213 122 222 158 Z" fill="#d966a0"/>
+            <path d="M221 158 Q243 130 235 108 Q229 97 222 109 Q215 123 221 156 Z" fill="#fff0f6"/>
             <!-- belly -->
-            <ellipse cx="210" cy="225" rx="24" ry="30" fill="#f8d0c4"/>
+            <ellipse cx="210" cy="225" rx="24" ry="30" fill="#fff0f6"/>
             <!-- eyes — button, direct -->
             <circle cx="197" cy="182" r="6" fill="#3a2a20"/>
             <circle cx="223" cy="182" r="6" fill="#3a2a20"/>
             <circle cx="199" cy="180" r="1.8" fill="#fff"/>
             <circle cx="225" cy="180" r="1.8" fill="#fff"/>
             <!-- nose -->
-            <ellipse cx="210" cy="196" rx="5" ry="4" fill="#c87060"/>
+            <ellipse cx="210" cy="196" rx="5" ry="4" fill="#cc2244"/>
             <!-- gentle smile -->
             <path d="M205 201 Q210 206 215 201" stroke="#c87060" stroke-width="1.8" fill="none"/>
             <!-- whiskers -->
@@ -372,10 +408,8 @@
             <line x1="216" y1="197" x2="242" y2="194" stroke="#c87060" stroke-width="1" opacity="0.4"/>
             <line x1="216" y1="200" x2="242" y2="200" stroke="#c87060" stroke-width="1" opacity="0.4"/>
             <!-- paws -->
-            <ellipse cx="178" cy="250" rx="16" ry="11" fill="#f0b8a8"/>
-            <ellipse cx="242" cy="250" rx="16" ry="11" fill="#f0b8a8"/>
-            <!-- tail -->
-            <circle cx="248" cy="234" r="14" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.5"/>
+            <ellipse cx="178" cy="250" rx="16" ry="11" fill="#d966a0"/>
+            <ellipse cx="242" cy="250" rx="16" ry="11" fill="#d966a0"/>
             <!-- title text -->
             <text x="210" y="50" text-anchor="middle" font-family="'Lora',serif" font-size="52" font-weight="500" fill="#b85040">Pink</text>
             <text x="210" y="76" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="13" fill="#c87060" letter-spacing="2.5">by michael khela</text>
@@ -402,10 +436,10 @@
             <rect width="420" height="340" fill="#fdf4ef"/>
             <ellipse cx="210" cy="420" rx="400" ry="120" fill="#f0d8c0" opacity="0.3"/>
             <!-- faint Pink, small, soft -->
-            <ellipse cx="210" cy="280" rx="28" ry="33" fill="#f0b8a8" opacity="0.45"/>
-            <circle cx="210" cy="250" r="21" fill="#f0b8a8" opacity="0.45"/>
-            <ellipse cx="202" cy="227" rx="6" ry="16" fill="#f0b8a8" opacity="0.45"/>
-            <ellipse cx="218" cy="226" rx="6" ry="16" fill="#f0b8a8" opacity="0.45"/>
+            <ellipse cx="210" cy="280" rx="28" ry="33" fill="#d966a0" opacity="0.45"/>
+            <circle cx="210" cy="250" r="21" fill="#d966a0" opacity="0.45"/>
+            <ellipse cx="202" cy="227" rx="6" ry="16" fill="#d966a0" opacity="0.45"/>
+            <ellipse cx="218" cy="226" rx="6" ry="16" fill="#d966a0" opacity="0.45"/>
             <circle cx="202" cy="252" r="4" fill="#3a2a20" opacity="0.25"/>
             <circle cx="218" cy="252" r="4" fill="#3a2a20" opacity="0.25"/>
             <!-- dedication text in illustration -->
@@ -443,21 +477,21 @@
             <rect x="74" y="180" width="16" height="41" rx="2" fill="#c8b4e0" opacity="0.8"/>
             <rect x="93" y="190" width="14" height="31" rx="2" fill="#f0c8a0" opacity="0.8"/>
             <!-- Pink on shelf, alone, waiting -->
-            <ellipse cx="210" cy="212" rx="30" ry="36" fill="#f0b8a8"/>
-            <circle cx="210" cy="178" r="23" fill="#f0b8a8"/>
-            <ellipse cx="202" cy="153" rx="7" ry="18" fill="#f0b8a8"/>
-            <ellipse cx="202" cy="153" rx="4" ry="13" fill="#f8d0c4"/>
-            <path d="M218 162 Q232 140 225 120 Q219 109 212 120 Q205 133 212 160 Z" fill="#f0b8a8"/>
-            <path d="M216 159 Q228 140 222 122 Q217 112 212 122 Q206 134 212 157 Z" fill="#f8d0c4"/>
+            <ellipse cx="210" cy="212" rx="30" ry="36" fill="#d966a0"/>
+            <circle cx="210" cy="178" r="23" fill="#d966a0"/>
+            <ellipse cx="202" cy="153" rx="7" ry="18" fill="#d966a0"/>
+            <ellipse cx="202" cy="153" rx="4" ry="13" fill="#fff0f6"/>
+            <path d="M218 162 Q232 140 225 120 Q219 109 212 120 Q205 133 212 160 Z" fill="#d966a0"/>
+            <path d="M216 159 Q228 140 222 122 Q217 112 212 122 Q206 134 212 157 Z" fill="#fff0f6"/>
             <circle cx="202" cy="180" r="4.5" fill="#3a2a20"/>
             <circle cx="218" cy="180" r="4.5" fill="#3a2a20"/>
             <circle cx="203.5" cy="178.5" r="1.3" fill="#fff"/>
             <circle cx="219.5" cy="178.5" r="1.3" fill="#fff"/>
-            <ellipse cx="210" cy="192" rx="4" ry="3" fill="#c87060"/>
-            <ellipse cx="210" cy="212" rx="17" ry="21" fill="#f8d0c4"/>
-            <ellipse cx="188" cy="222" rx="12" ry="8" fill="#f0b8a8"/>
-            <ellipse cx="232" cy="222" rx="12" ry="8" fill="#f0b8a8"/>
-            <circle cx="233" cy="212" r="10" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.2"/>
+            <ellipse cx="210" cy="192" rx="4" ry="3" fill="#cc2244"/>
+            <ellipse cx="210" cy="212" rx="17" ry="21" fill="#fff0f6"/>
+            <ellipse cx="188" cy="222" rx="12" ry="8" fill="#d966a0"/>
+            <ellipse cx="232" cy="222" rx="12" ry="8" fill="#d966a0"/>
+            <circle cx="233" cy="212" r="10" fill="#fff8f2" stroke="#d966a0" stroke-width="1.2"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fdf6f0;">
@@ -508,20 +542,20 @@
             <rect x="338" y="215" width="14" height="45" rx="2" fill="#c8b4e0" opacity="0.3"/>
             <rect x="356" y="225" width="12" height="35" rx="2" fill="#f0c8a0" opacity="0.3"/>
             <!-- Pink from below/side as she's being lifted -->
-            <ellipse cx="180" cy="245" rx="32" ry="38" fill="#f0b8a8"/>
-            <circle cx="180" cy="210" r="25" fill="#f0b8a8"/>
-            <ellipse cx="172" cy="183" rx="8" ry="19" fill="#f0b8a8"/>
-            <ellipse cx="172" cy="183" rx="4.5" ry="14" fill="#f8d0c4"/>
-            <path d="M188 191 Q202 169 195 149 Q189 138 182 149 Q174 162 182 189 Z" fill="#f0b8a8"/>
-            <path d="M186 188 Q198 169 192 151 Q187 141 182 151 Q175 163 182 186 Z" fill="#f8d0c4"/>
+            <ellipse cx="180" cy="245" rx="32" ry="38" fill="#d966a0"/>
+            <circle cx="180" cy="210" r="25" fill="#d966a0"/>
+            <ellipse cx="172" cy="183" rx="8" ry="19" fill="#d966a0"/>
+            <ellipse cx="172" cy="183" rx="4.5" ry="14" fill="#fff0f6"/>
+            <path d="M188 191 Q202 169 195 149 Q189 138 182 149 Q174 162 182 189 Z" fill="#d966a0"/>
+            <path d="M186 188 Q198 169 192 151 Q187 141 182 151 Q175 163 182 186 Z" fill="#fff0f6"/>
             <!-- eyes looking upward -->
             <circle cx="170" cy="212" r="5" fill="#3a2a20"/>
             <circle cx="190" cy="210" r="5" fill="#3a2a20"/>
             <circle cx="171.5" cy="210.2" r="1.5" fill="#fff"/>
             <circle cx="191.5" cy="208.2" r="1.5" fill="#fff"/>
-            <ellipse cx="180" cy="224" rx="18" ry="22" fill="#f8d0c4"/>
-            <ellipse cx="158" cy="256" rx="12" ry="8" fill="#f0b8a8"/>
-            <ellipse cx="202" cy="256" rx="12" ry="8" fill="#f0b8a8"/>
+            <ellipse cx="180" cy="224" rx="18" ry="22" fill="#fff0f6"/>
+            <ellipse cx="158" cy="256" rx="12" ry="8" fill="#d966a0"/>
+            <ellipse cx="202" cy="256" rx="12" ry="8" fill="#d966a0"/>
             <!-- golden lifting light -->
             <ellipse cx="180" cy="150" rx="100" ry="80" fill="#ffd0a0" opacity="0.2"/>
           </svg>
@@ -557,10 +591,10 @@
             <ellipse cx="155" cy="122" rx="12" ry="10" fill="#a0c8e8"/>
             <path d="M148 118 Q138 124 136 132" stroke="#f5c8a8" stroke-width="8" fill="none" stroke-linecap="round"/>
             <!-- Pink tucked under arm -->
-            <ellipse cx="130" cy="130" rx="12" ry="10" fill="#f0b8a8"/>
-            <circle cx="130" cy="120" r="9" fill="#f0b8a8"/>
-            <ellipse cx="125" cy="109" rx="3" ry="8" fill="#f0b8a8"/>
-            <ellipse cx="135" cy="109" rx="3" ry="8" fill="#f0b8a8"/>
+            <ellipse cx="130" cy="130" rx="12" ry="10" fill="#d966a0"/>
+            <circle cx="130" cy="120" r="9" fill="#d966a0"/>
+            <ellipse cx="125" cy="109" rx="3" ry="8" fill="#d966a0"/>
+            <ellipse cx="135" cy="109" rx="3" ry="8" fill="#d966a0"/>
             <circle cx="124" cy="122" r="2.5" fill="#3a2a20"/>
             <circle cx="136" cy="122" r="2.5" fill="#3a2a20"/>
             <!-- Panel 2: sidewalk (bottom) -->
@@ -582,10 +616,10 @@
             <!-- arm holding Pink low -->
             <line x1="192" y1="238" x2="178" y2="268" stroke="#f5c8a8" stroke-width="7"/>
             <!-- Pink being dragged, low -->
-            <ellipse cx="172" cy="282" rx="14" ry="10" fill="#f0b8a8"/>
-            <circle cx="172" cy="272" r="10" fill="#f0b8a8"/>
-            <ellipse cx="166" cy="260" rx="3.5" ry="9" fill="#f0b8a8"/>
-            <ellipse cx="178" cy="260" rx="3.5" ry="9" fill="#f0b8a8"/>
+            <ellipse cx="172" cy="282" rx="14" ry="10" fill="#d966a0"/>
+            <circle cx="172" cy="272" r="10" fill="#d966a0"/>
+            <ellipse cx="166" cy="260" rx="3.5" ry="9" fill="#d966a0"/>
+            <ellipse cx="178" cy="260" rx="3.5" ry="9" fill="#d966a0"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fdf6f0;">
@@ -624,11 +658,11 @@
             <circle cx="260" cy="136" r="9" fill="#f0c080"/>
             <circle cx="278" cy="133" r="7" fill="#e09070"/>
             <!-- Pink propped on tray, watching -->
-            <ellipse cx="162" cy="147" rx="14" ry="17" fill="#f0b8a8"/>
-            <circle cx="162" cy="132" r="11" fill="#f0b8a8"/>
-            <ellipse cx="156" cy="119" rx="3.5" ry="9" fill="#f0b8a8"/>
-            <ellipse cx="156" cy="119" rx="2" ry="7" fill="#f8d0c4"/>
-            <path d="M168 124 Q176 112 171 102" fill="none" stroke="#f0b8a8" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="162" cy="147" rx="14" ry="17" fill="#d966a0"/>
+            <circle cx="162" cy="132" r="11" fill="#d966a0"/>
+            <ellipse cx="156" cy="119" rx="3.5" ry="9" fill="#d966a0"/>
+            <ellipse cx="156" cy="119" rx="2" ry="7" fill="#fff0f6"/>
+            <path d="M168 124 Q176 112 171 102" fill="none" stroke="#d966a0" stroke-width="7" stroke-linecap="round"/>
             <!-- Pink eyes looking at Jessie -->
             <circle cx="156" cy="134" r="3" fill="#3a2a20"/>
             <circle cx="168" cy="132" r="3" fill="#3a2a20"/>
@@ -664,24 +698,58 @@
             <path d="M208 215 Q192 228 196 244 Q200 251 209 244" stroke="#f5c8a8" stroke-width="11" fill="none" stroke-linecap="round"/>
             <path d="M272 215 Q288 228 284 244 Q280 251 271 244" stroke="#f5c8a8" stroke-width="11" fill="none" stroke-linecap="round"/>
             <!-- Pink held to chest, eyes at reader -->
-            <ellipse cx="240" cy="200" rx="28" ry="34" fill="#f0b8a8"/>
-            <circle cx="240" cy="168" r="22" fill="#f0b8a8"/>
-            <ellipse cx="231" cy="144" rx="7" ry="17" fill="#f0b8a8"/>
-            <ellipse cx="231" cy="144" rx="4" ry="13" fill="#f8d0c4"/>
-            <path d="M249 152 Q262 130 255 111 Q249 99 242 111 Q234 126 242 150 Z" fill="#f0b8a8"/>
+            <ellipse cx="240" cy="200" rx="28" ry="34" fill="#d966a0"/>
+            <circle cx="240" cy="168" r="22" fill="#d966a0"/>
+            <ellipse cx="231" cy="144" rx="7" ry="17" fill="#d966a0"/>
+            <ellipse cx="231" cy="144" rx="4" ry="13" fill="#fff0f6"/>
+            <path d="M249 152 Q262 130 255 111 Q249 99 242 111 Q234 126 242 150 Z" fill="#d966a0"/>
             <circle cx="231" cy="170" r="5" fill="#3a2a20"/>
             <circle cx="249" cy="170" r="5" fill="#3a2a20"/>
             <circle cx="232.5" cy="168.5" r="1.5" fill="#fff"/>
             <circle cx="250.5" cy="168.5" r="1.5" fill="#fff"/>
-            <ellipse cx="240" cy="183" rx="4" ry="3.5" fill="#c87060"/>
+            <ellipse cx="240" cy="183" rx="4" ry="3.5" fill="#cc2244"/>
             <!-- Jessie's head -->
             <circle cx="240" cy="145" r="34" fill="#f5c8a8"/>
-            <path d="M212 133 Q240 122 268 130" fill="#7a5040"/>
-            <!-- Jessie eyes forward, walking -->
-            <circle cx="228" cy="145" r="5" fill="#3a2a20"/>
-            <circle cx="252" cy="145" r="5" fill="#3a2a20"/>
-            <circle cx="229.5" cy="143.5" r="1.5" fill="#fff"/>
-            <circle cx="253.5" cy="143.5" r="1.5" fill="#fff"/>
+            <!-- curly hair — poofy ringlets on top -->
+            <circle cx="226" cy="119" r="15" fill="#7a5040"/>
+            <circle cx="240" cy="114" r="17" fill="#7a5040"/>
+            <circle cx="254" cy="118" r="15" fill="#7a5040"/>
+            <circle cx="217" cy="126" r="12" fill="#7a5040"/>
+            <circle cx="263" cy="124" r="12" fill="#7a5040"/>
+            <!-- side curls framing face -->
+            <circle cx="210" cy="140" r="11" fill="#7a5040"/>
+            <circle cx="270" cy="138" r="11" fill="#7a5040"/>
+            <!-- hanging ringlets -->
+            <path d="M211 150 Q207 160 211 168 Q215 175 211 182" stroke="#7a5040" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M269 148 Q273 158 269 166 Q265 174 269 181" stroke="#7a5040" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M219 150 Q216 158 219 165 Q222 171 219 177" stroke="#6a3828" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M261 149 Q264 157 261 164 Q258 170 261 176" stroke="#6a3828" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <!-- hair highlight -->
+            <path d="M228 112 Q240 107 252 110" stroke="#9a7060" stroke-width="2" fill="none" opacity="0.4"/>
+            <!-- eyebrows -->
+            <path d="M219 136 Q228 130 236 133" stroke="#5a3520" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M244 133 Q252 128 260 131" stroke="#5a3520" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- eyes with iris + pupil -->
+            <circle cx="228" cy="145" r="7" fill="#6a4030"/>
+            <circle cx="252" cy="145" r="7" fill="#6a4030"/>
+            <circle cx="228" cy="145" r="5" fill="#2a1810"/>
+            <circle cx="252" cy="145" r="5" fill="#2a1810"/>
+            <circle cx="230" cy="142.5" r="2" fill="#fff"/>
+            <circle cx="254" cy="142.5" r="2" fill="#fff"/>
+            <!-- eyelashes -->
+            <path d="M221 138 Q220 133 222 130" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M227 137 Q226 132 228 129" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M233 138 Q233 133 235 130" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M245 138 Q244 133 246 130" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M251 137 Q251 132 253 129" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M257 138 Q257 133 259 130" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <!-- nose -->
+            <ellipse cx="240" cy="156" rx="4" ry="3" fill="#e8a888" opacity="0.6"/>
+            <!-- mouth -->
+            <path d="M232 165 Q240 170 248 165" stroke="#c87060" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <!-- cheek blush -->
+            <ellipse cx="217" cy="154" rx="11" ry="6" fill="#ffb0c0" opacity="0.28"/>
+            <ellipse cx="263" cy="154" rx="11" ry="6" fill="#ffb0c0" opacity="0.28"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
@@ -753,11 +821,11 @@
             <!-- eyes closed tight -->
             <path d="M128 200 Q140 196 152 200" stroke="#3a2a20" stroke-width="2" fill="none"/>
             <!-- Pink pressed to cheek -->
-            <ellipse cx="104" cy="210" rx="20" ry="24" fill="#f0b8a8"/>
-            <circle cx="104" cy="188" r="17" fill="#f0b8a8"/>
-            <ellipse cx="97" cy="169" rx="5.5" ry="14" fill="#f0b8a8"/>
-            <ellipse cx="97" cy="169" rx="3" ry="10" fill="#f8d0c4"/>
-            <path d="M111 176 Q121 160 115 146 Q110 136 104 147 Q97 159 104 174 Z" fill="#f0b8a8"/>
+            <ellipse cx="104" cy="210" rx="20" ry="24" fill="#d966a0"/>
+            <circle cx="104" cy="188" r="17" fill="#d966a0"/>
+            <ellipse cx="97" cy="169" rx="5.5" ry="14" fill="#d966a0"/>
+            <ellipse cx="97" cy="169" rx="3" ry="10" fill="#fff0f6"/>
+            <path d="M111 176 Q121 160 115 146 Q110 136 104 147 Q97 159 104 174 Z" fill="#d966a0"/>
             <circle cx="97" cy="190" r="3.5" fill="#3a2a20"/>
             <circle cx="111" cy="190" r="3.5" fill="#3a2a20"/>
             <circle cx="98.5" cy="188.5" r="1" fill="#fff"/>
@@ -777,17 +845,17 @@
             <rect x="0" y="150" width="420" height="190" fill="#7a5060"/>
             <path d="M0 150 Q140 136 280 143 Q360 148 420 140 L420 165 Q280 175 140 168 Q70 163 0 172 Z" fill="#6a4050"/>
             <!-- just the top of Pink visible, very close -->
-            <ellipse cx="200" cy="160" rx="65" ry="26" fill="#f0b8a8"/>
-            <ellipse cx="162" cy="125" rx="18" ry="36" fill="#f0b8a8"/>
-            <ellipse cx="163" cy="125" rx="10" ry="28" fill="#f8d0c4"/>
-            <path d="M218 136 Q240 108 232 84 Q226 70 218 82 Q209 96 218 134 Z" fill="#f0b8a8"/>
+            <ellipse cx="200" cy="160" rx="65" ry="26" fill="#d966a0"/>
+            <ellipse cx="162" cy="125" rx="18" ry="36" fill="#d966a0"/>
+            <ellipse cx="163" cy="125" rx="10" ry="28" fill="#fff0f6"/>
+            <path d="M218 136 Q240 108 232 84 Q226 70 218 82 Q209 96 218 134 Z" fill="#d966a0"/>
             <!-- Pink's eyes, very close, direct -->
             <circle cx="178" cy="153" r="8" fill="#3a2a20"/>
             <circle cx="210" cy="151" r="8" fill="#3a2a20"/>
             <circle cx="180.5" cy="151" r="2.4" fill="#fff"/>
             <circle cx="212.5" cy="149" r="2.4" fill="#fff"/>
             <!-- nose just visible -->
-            <ellipse cx="194" cy="168" rx="5" ry="4" fill="#c87060" opacity="0.7"/>
+            <ellipse cx="194" cy="168" rx="5" ry="4" fill="#cc2244" opacity="0.7"/>
             <!-- distant window lightning -->
             <rect x="310" y="15" width="95" height="88" rx="4" fill="#141e2e"/>
             <path d="M355 20 L343 50 L354 50 L341 82" stroke="#e8e0a0" stroke-width="2" fill="none" opacity="0.45"/>
@@ -842,11 +910,11 @@
             <!-- arm around Pink -->
             <path d="M162 218 Q144 228 140 242" stroke="#f5c8a8" stroke-width="10" fill="none" stroke-linecap="round"/>
             <!-- Pink tucked in, eyes closed too -->
-            <ellipse cx="122" cy="250" rx="28" ry="34" fill="#f0b8a8"/>
-            <circle cx="122" cy="218" r="22" fill="#f0b8a8"/>
-            <ellipse cx="114" cy="194" rx="7" ry="17" fill="#f0b8a8"/>
-            <ellipse cx="114" cy="194" rx="4" ry="13" fill="#f8d0c4"/>
-            <path d="M130 200 Q142 181 136 165" fill="none" stroke="#f0b8a8" stroke-width="11" stroke-linecap="round"/>
+            <ellipse cx="122" cy="250" rx="28" ry="34" fill="#d966a0"/>
+            <circle cx="122" cy="218" r="22" fill="#d966a0"/>
+            <ellipse cx="114" cy="194" rx="7" ry="17" fill="#d966a0"/>
+            <ellipse cx="114" cy="194" rx="4" ry="13" fill="#fff0f6"/>
+            <path d="M130 200 Q142 181 136 165" fill="none" stroke="#d966a0" stroke-width="11" stroke-linecap="round"/>
             <path d="M112 220 Q122 216 132 220" stroke="#3a2a20" stroke-width="1.5" fill="none"/>
             <!-- stars outside window -->
             <rect x="305" y="20" width="100" height="100" rx="5" fill="#0e1525"/>
@@ -873,31 +941,62 @@
             <ellipse cx="210" cy="240" rx="180" ry="100" fill="#f0c860" opacity="0.09"/>
             <!-- Jessie's sleeping face, soft -->
             <circle cx="290" cy="185" r="52" fill="#f5c8a8"/>
-            <path d="M260 170 Q290 158 320 166" fill="#7a5040"/>
-            <path d="M260 176 Q253 158 257 146 Q261 136 267 143" fill="none" stroke="#7a5040" stroke-width="4" stroke-linecap="round"/>
-            <path d="M320 175 Q327 157 323 145 Q319 135 313 142" fill="none" stroke="#7a5040" stroke-width="4" stroke-linecap="round"/>
+            <!-- curly hair — large close-up poofy ringlets -->
+            <circle cx="270" cy="146" r="22" fill="#7a5040"/>
+            <circle cx="290" cy="139" r="25" fill="#7a5040"/>
+            <circle cx="310" cy="145" r="22" fill="#7a5040"/>
+            <circle cx="255" cy="160" r="18" fill="#7a5040"/>
+            <circle cx="325" cy="158" r="18" fill="#7a5040"/>
+            <!-- side curls framing face -->
+            <circle cx="242" cy="178" r="16" fill="#7a5040"/>
+            <circle cx="338" cy="175" r="16" fill="#7a5040"/>
+            <!-- hanging ringlets -->
+            <path d="M243 195 Q237 210 243 222 Q249 233 243 244" stroke="#7a5040" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <path d="M337 192 Q343 207 337 219 Q331 230 337 241" stroke="#7a5040" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <path d="M253 194 Q248 207 253 217 Q258 226 253 234" stroke="#6a3828" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M327 192 Q332 205 327 215 Q322 224 327 232" stroke="#6a3828" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <!-- hair highlight -->
+            <path d="M272 137 Q290 131 308 135" stroke="#9a7060" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <!-- eyebrows (soft, sleeping) -->
+            <path d="M271 173 Q281 167 291 170" stroke="#5a3520" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M291 170 Q300 165 310 168" stroke="#5a3520" stroke-width="2.5" fill="none" stroke-linecap="round"/>
             <!-- eyes closed, peaceful -->
             <path d="M273 185 Q290 181 307 185" stroke="#3a2a20" stroke-width="2.2" fill="none"/>
+            <!-- eyelashes on closed lids -->
+            <path d="M274 185 Q273 179 275 176" stroke="#3a2a20" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M281 183 Q280 177 282 174" stroke="#3a2a20" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M290 182 Q290 176 292 173" stroke="#3a2a20" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M298 183 Q299 177 301 174" stroke="#3a2a20" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M305 185 Q306 179 308 176" stroke="#3a2a20" stroke-width="1.3" fill="none" stroke-linecap="round"/>
             <!-- nose -->
-            <ellipse cx="290" cy="200" rx="6" ry="5" fill="#e8b090" opacity="0.6"/>
+            <ellipse cx="290" cy="200" rx="5" ry="4" fill="#e8a888" opacity="0.6"/>
             <!-- gentle mouth -->
-            <path d="M280 213 Q290 219 300 213" stroke="#c87060" stroke-width="2" fill="none"/>
+            <path d="M279 215 Q290 222 301 215" stroke="#c87060" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <!-- cheek blush (sleeping, warm) -->
+            <ellipse cx="264" cy="196" rx="15" ry="9" fill="#ffb0c0" opacity="0.25"/>
+            <ellipse cx="316" cy="196" rx="15" ry="9" fill="#ffb0c0" opacity="0.25"/>
             <!-- Pink close, eyes out at reader -->
-            <ellipse cx="122" cy="225" rx="38" ry="46" fill="#f0b8a8"/>
-            <circle cx="122" cy="180" r="30" fill="#f0b8a8"/>
-            <ellipse cx="112" cy="148" rx="10" ry="22" fill="#f0b8a8"/>
-            <ellipse cx="112" cy="148" rx="5.5" ry="17" fill="#f8d0c4"/>
-            <path d="M132 157 Q148 130 140 108 Q134 95 126 107 Q117 122 126 154 Z" fill="#f0b8a8"/>
-            <ellipse cx="122" cy="224" rx="22" ry="26" fill="#f8d0c4"/>
-            <ellipse cx="96" cy="238" rx="14" ry="9" fill="#f0b8a8"/>
-            <ellipse cx="148" cy="238" rx="14" ry="9" fill="#f0b8a8"/>
+            <ellipse cx="122" cy="225" rx="38" ry="46" fill="#d966a0"/>
+            <circle cx="122" cy="180" r="30" fill="#d966a0"/>
+            <ellipse cx="112" cy="148" rx="10" ry="22" fill="#d966a0"/>
+            <ellipse cx="112" cy="148" rx="5.5" ry="17" fill="#fff0f6"/>
+            <path d="M132 157 Q148 130 140 108 Q134 95 126 107 Q117 122 126 154 Z" fill="#d966a0"/>
+            <ellipse cx="122" cy="224" rx="22" ry="26" fill="#fff0f6"/>
+            <ellipse cx="96" cy="238" rx="14" ry="9" fill="#d966a0"/>
+            <ellipse cx="148" cy="238" rx="14" ry="9" fill="#d966a0"/>
             <!-- Pink's eyes, direct -->
-            <circle cx="108" cy="183" r="6.5" fill="#3a2a20"/>
-            <circle cx="136" cy="183" r="6.5" fill="#3a2a20"/>
-            <circle cx="110" cy="181" r="2" fill="#fff"/>
-            <circle cx="138" cy="181" r="2" fill="#fff"/>
-            <!-- Pink nose -->
-            <ellipse cx="122" cy="198" rx="5" ry="4" fill="#c87060"/>
+            <circle cx="108" cy="183" r="7" fill="#1a1210"/>
+            <circle cx="136" cy="183" r="7" fill="#1a1210"/>
+            <circle cx="110.5" cy="180.5" r="2.5" fill="#fff"/>
+            <circle cx="138.5" cy="180.5" r="2.5" fill="#fff"/>
+            <circle cx="105" cy="186" r="1.2" fill="#fff" opacity="0.5"/>
+            <circle cx="133" cy="186" r="1.2" fill="#fff" opacity="0.5"/>
+            <!-- Pink nose — vivid red embroidered -->
+            <ellipse cx="122" cy="198" rx="6" ry="5" fill="#cc2244"/>
+            <ellipse cx="122" cy="196" rx="4" ry="3" fill="#e03355" opacity="0.6"/>
+            <!-- Pink cheek blush -->
+            <ellipse cx="100" cy="193" rx="12" ry="7" fill="#ff80b0" opacity="0.2"/>
+            <ellipse cx="144" cy="193" rx="12" ry="7" fill="#ff80b0" opacity="0.2"/>
           </svg>
         </div>
         <div class="page-text" style="background:#2a1e2e;">
@@ -938,17 +1037,47 @@
             <path d="M194 198 Q212 206 215 220" stroke="#f5c8a8" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
             <!-- Jessie head, wide-eyed -->
             <circle cx="165" cy="165" r="34" fill="#f5c8a8"/>
-            <path d="M142 153 Q165 143 188 150" fill="#7a5040"/>
-            <!-- hair clips -->
+            <!-- curly hair — with clips holding puffs back -->
+            <circle cx="152" cy="140" r="13" fill="#7a5040"/>
+            <circle cx="165" cy="135" r="15" fill="#7a5040"/>
+            <circle cx="178" cy="139" r="13" fill="#7a5040"/>
+            <circle cx="143" cy="149" r="11" fill="#7a5040"/>
+            <circle cx="187" cy="148" r="11" fill="#7a5040"/>
+            <!-- side puffs -->
+            <circle cx="136" cy="161" r="10" fill="#7a5040"/>
+            <circle cx="194" cy="159" r="10" fill="#7a5040"/>
+            <!-- hair clips holding the curls -->
             <circle cx="148" cy="148" r="5.5" fill="#f060a0"/>
             <circle cx="182" cy="146" r="5.5" fill="#f060a0"/>
-            <!-- nervous wide eyes -->
-            <circle cx="153" cy="165" r="6" fill="#3a2a20"/>
-            <circle cx="177" cy="165" r="6" fill="#3a2a20"/>
-            <circle cx="154.5" cy="163.5" r="1.8" fill="#fff"/>
-            <circle cx="178.5" cy="163.5" r="1.8" fill="#fff"/>
+            <!-- loose ringlets escaping the clips -->
+            <path d="M137 170 Q133 180 137 188 Q141 196 137 204" stroke="#7a5040" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M193 168 Q197 178 193 186 Q189 194 193 202" stroke="#7a5040" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- hair highlight -->
+            <path d="M153 133 Q165 128 177 131" stroke="#9a7060" stroke-width="1.8" fill="none" opacity="0.4"/>
+            <!-- eyebrows raised (nervous) -->
+            <path d="M144 154 Q153 147 161 151" stroke="#5a3520" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M169 151 Q177 145 186 149" stroke="#5a3520" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- nervous wide eyes with iris -->
+            <circle cx="153" cy="165" r="8" fill="#6a4030"/>
+            <circle cx="177" cy="165" r="8" fill="#6a4030"/>
+            <circle cx="153" cy="165" r="6" fill="#2a1810"/>
+            <circle cx="177" cy="165" r="6" fill="#2a1810"/>
+            <circle cx="155.5" cy="162" r="2.2" fill="#fff"/>
+            <circle cx="179.5" cy="162" r="2.2" fill="#fff"/>
+            <!-- eyelashes -->
+            <path d="M145 157 Q144 152 146 149" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M151 156 Q150 151 152 148" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M157 156 Q157 151 159 148" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M169 156 Q168 151 170 148" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M175 156 Q175 151 177 148" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M181 157 Q181 152 183 149" stroke="#2a1810" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <!-- nose -->
+            <ellipse cx="165" cy="175" rx="4" ry="3" fill="#e8a888" opacity="0.6"/>
             <!-- small uncertain mouth -->
-            <path d="M156 178 Q165 182 174 178" stroke="#3a2a20" stroke-width="1.5" fill="none"/>
+            <path d="M156 182 Q165 186 174 182" stroke="#b07060" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <!-- cheek blush (nervous) -->
+            <ellipse cx="141" cy="173" rx="11" ry="6" fill="#ffb0c0" opacity="0.35"/>
+            <ellipse cx="189" cy="173" rx="11" ry="6" fill="#ffb0c0" opacity="0.35"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
@@ -964,15 +1093,15 @@
             <rect x="30" y="215" width="360" height="18" rx="6" fill="#d4a090" opacity="0.5"/>
             <rect x="30" y="232" width="360" height="108" rx="6" fill="#c87880" opacity="0.45"/>
             <!-- Pink on bed, watching, still -->
-            <ellipse cx="168" cy="238" rx="26" ry="30" fill="#f0b8a8"/>
-            <circle cx="168" cy="210" r="20" fill="#f0b8a8"/>
-            <ellipse cx="160" cy="188" rx="6.5" ry="15" fill="#f0b8a8"/>
-            <ellipse cx="160" cy="188" rx="3.5" ry="11" fill="#f8d0c4"/>
-            <path d="M176 196 Q186 180 180 166 Q175 156 168 167 Q161 179 168 194 Z" fill="#f0b8a8"/>
-            <ellipse cx="168" cy="237" rx="15" ry="12" fill="#f8d0c4"/>
-            <ellipse cx="148" cy="246" rx="10" ry="6.5" fill="#f0b8a8"/>
-            <ellipse cx="188" cy="246" rx="10" ry="6.5" fill="#f0b8a8"/>
-            <circle cx="189" cy="236" r="9" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.2"/>
+            <ellipse cx="168" cy="238" rx="26" ry="30" fill="#d966a0"/>
+            <circle cx="168" cy="210" r="20" fill="#d966a0"/>
+            <ellipse cx="160" cy="188" rx="6.5" ry="15" fill="#d966a0"/>
+            <ellipse cx="160" cy="188" rx="3.5" ry="11" fill="#fff0f6"/>
+            <path d="M176 196 Q186 180 180 166 Q175 156 168 167 Q161 179 168 194 Z" fill="#d966a0"/>
+            <ellipse cx="168" cy="237" rx="15" ry="12" fill="#fff0f6"/>
+            <ellipse cx="148" cy="246" rx="10" ry="6.5" fill="#d966a0"/>
+            <ellipse cx="188" cy="246" rx="10" ry="6.5" fill="#d966a0"/>
+            <circle cx="189" cy="236" r="9" fill="#fff8f2" stroke="#d966a0" stroke-width="1.2"/>
             <!-- Pink eyes watching, alert -->
             <circle cx="160" cy="212" r="4.5" fill="#3a2a20"/>
             <circle cx="176" cy="212" r="4.5" fill="#3a2a20"/>
@@ -1003,24 +1132,51 @@
             <!-- Jessie holding Pink up to her face, goodbye -->
             <ellipse cx="210" cy="248" rx="36" ry="50" fill="#a0c8e8"/>
             <circle cx="210" cy="185" r="36" fill="#f5c8a8"/>
-            <path d="M182 172 Q210 162 238 169" fill="#7a5040"/>
+            <!-- curly hair — goodbye scene -->
+            <circle cx="197" cy="159" r="15" fill="#7a5040"/>
+            <circle cx="210" cy="154" r="18" fill="#7a5040"/>
+            <circle cx="223" cy="158" r="15" fill="#7a5040"/>
+            <circle cx="188" cy="167" r="13" fill="#7a5040"/>
+            <circle cx="232" cy="166" r="13" fill="#7a5040"/>
+            <!-- side curls -->
+            <circle cx="181" cy="179" r="12" fill="#7a5040"/>
+            <circle cx="239" cy="177" r="12" fill="#7a5040"/>
+            <!-- hanging ringlets -->
+            <path d="M180 190 Q176 200 180 209 Q184 217 180 225" stroke="#7a5040" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M240 188 Q244 198 240 207 Q236 215 240 223" stroke="#7a5040" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <!-- hair highlight -->
+            <path d="M198 152 Q210 146 222 149" stroke="#9a7060" stroke-width="2" fill="none" opacity="0.4"/>
+            <!-- eyebrows (eyes closed, emotional) -->
+            <path d="M195 174 Q203 169 211 172" stroke="#5a3520" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <path d="M209 172 Q217 167 225 170" stroke="#5a3520" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <!-- eyes closed, holding close -->
             <path d="M196 185 Q210 181 224 185" stroke="#3a2a20" stroke-width="2.2" fill="none"/>
+            <!-- eyelashes on closed lids -->
+            <path d="M197 185 Q196 180 198 177" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M204 183 Q203 178 205 175" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M210 182 Q210 177 212 174" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M216 183 Q216 178 218 175" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M222 185 Q223 180 225 177" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <!-- nose -->
+            <ellipse cx="210" cy="197" rx="4" ry="3" fill="#e8a888" opacity="0.6"/>
+            <!-- cheek blush -->
+            <ellipse cx="187" cy="192" rx="12" ry="7" fill="#ffb0c0" opacity="0.3"/>
+            <ellipse cx="233" cy="192" rx="12" ry="7" fill="#ffb0c0" opacity="0.3"/>
             <!-- arms lifting Pink -->
             <path d="M182 210 Q160 220 156 238" stroke="#f5c8a8" stroke-width="12" fill="none" stroke-linecap="round"/>
             <path d="M238 210 Q260 220 264 238" stroke="#f5c8a8" stroke-width="12" fill="none" stroke-linecap="round"/>
             <!-- Pink held up, cheek to cheek -->
-            <ellipse cx="210" cy="195" rx="28" ry="34" fill="#f0b8a8"/>
-            <circle cx="210" cy="163" r="22" fill="#f0b8a8"/>
-            <ellipse cx="201" cy="139" rx="7" ry="17" fill="#f0b8a8"/>
-            <ellipse cx="201" cy="139" rx="4" ry="13" fill="#f8d0c4"/>
-            <path d="M219 148 Q232 126 225 107 Q219 95 212 107 Q204 121 212 146 Z" fill="#f0b8a8"/>
+            <ellipse cx="210" cy="195" rx="28" ry="34" fill="#d966a0"/>
+            <circle cx="210" cy="163" r="22" fill="#d966a0"/>
+            <ellipse cx="201" cy="139" rx="7" ry="17" fill="#d966a0"/>
+            <ellipse cx="201" cy="139" rx="4" ry="13" fill="#fff0f6"/>
+            <path d="M219 148 Q232 126 225 107 Q219 95 212 107 Q204 121 212 146 Z" fill="#d966a0"/>
             <!-- Pink eyes open, looking out -->
             <circle cx="200" cy="165" r="5.5" fill="#3a2a20"/>
             <circle cx="220" cy="165" r="5.5" fill="#3a2a20"/>
             <circle cx="201.5" cy="163.5" r="1.6" fill="#fff"/>
             <circle cx="221.5" cy="163.5" r="1.6" fill="#fff"/>
-            <ellipse cx="210" cy="178" rx="4" ry="3.5" fill="#c87060"/>
+            <ellipse cx="210" cy="178" rx="4" ry="3.5" fill="#cc2244"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
@@ -1036,17 +1192,17 @@
             <rect x="30" y="208" width="360" height="16" rx="5" fill="#d4a090" opacity="0.5"/>
             <rect x="30" y="223" width="360" height="117" rx="6" fill="#c87880" opacity="0.4"/>
             <!-- Pink set down alone, lopsided -->
-            <ellipse cx="178" cy="238" rx="26" ry="30" fill="#f0b8a8"/>
-            <circle cx="178" cy="210" r="20" fill="#f0b8a8"/>
+            <ellipse cx="178" cy="238" rx="26" ry="30" fill="#d966a0"/>
+            <circle cx="178" cy="210" r="20" fill="#d966a0"/>
             <!-- one ear up, one flopped low -->
-            <ellipse cx="169" cy="188" rx="6.5" ry="15" fill="#f0b8a8"/>
-            <ellipse cx="169" cy="188" rx="3.5" ry="11" fill="#f8d0c4"/>
-            <path d="M187 196 Q200 175 193 158 Q188 147 180 159 Q172 172 180 194 Z" fill="#f0b8a8"/>
+            <ellipse cx="169" cy="188" rx="6.5" ry="15" fill="#d966a0"/>
+            <ellipse cx="169" cy="188" rx="3.5" ry="11" fill="#fff0f6"/>
+            <path d="M187 196 Q200 175 193 158 Q188 147 180 159 Q172 172 180 194 Z" fill="#d966a0"/>
             <!-- slightly lopsided body -->
-            <ellipse cx="178" cy="237" rx="15" ry="12" fill="#f8d0c4"/>
-            <ellipse cx="158" cy="246" rx="10" ry="6.5" fill="#f0b8a8"/>
-            <ellipse cx="198" cy="248" rx="10" ry="6.5" fill="#f0b8a8"/>
-            <circle cx="200" cy="237" r="9" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1.2"/>
+            <ellipse cx="178" cy="237" rx="15" ry="12" fill="#fff0f6"/>
+            <ellipse cx="158" cy="246" rx="10" ry="6.5" fill="#d966a0"/>
+            <ellipse cx="198" cy="248" rx="10" ry="6.5" fill="#d966a0"/>
+            <circle cx="200" cy="237" r="9" fill="#fff8f2" stroke="#d966a0" stroke-width="1.2"/>
             <!-- Pink watching Jessie leave -->
             <circle cx="170" cy="212" r="4.5" fill="#3a2a20"/>
             <circle cx="186" cy="212" r="4.5" fill="#3a2a20"/>
@@ -1079,15 +1235,15 @@
             <!-- floor, perspective -->
             <rect x="0" y="295" width="420" height="45" fill="#e8d4b8" opacity="0.45"/>
             <!-- Pink, small, alone in hallway -->
-            <ellipse cx="130" cy="262" rx="22" ry="26" fill="#f0b8a8"/>
-            <circle cx="130" cy="238" r="17" fill="#f0b8a8"/>
-            <ellipse cx="123" cy="219" rx="5.5" ry="13" fill="#f0b8a8"/>
-            <ellipse cx="123" cy="219" rx="3" ry="9.5" fill="#f8d0c4"/>
-            <path d="M137 226 Q147 211 141 198 Q136 189 130 199 Q123 210 130 224 Z" fill="#f0b8a8"/>
-            <ellipse cx="130" cy="261" rx="12" ry="9" fill="#f8d0c4"/>
-            <ellipse cx="113" cy="269" rx="8" ry="5" fill="#f0b8a8"/>
-            <ellipse cx="147" cy="270" rx="8" ry="5" fill="#f0b8a8"/>
-            <circle cx="149" cy="260" r="7" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1"/>
+            <ellipse cx="130" cy="262" rx="22" ry="26" fill="#d966a0"/>
+            <circle cx="130" cy="238" r="17" fill="#d966a0"/>
+            <ellipse cx="123" cy="219" rx="5.5" ry="13" fill="#d966a0"/>
+            <ellipse cx="123" cy="219" rx="3" ry="9.5" fill="#fff0f6"/>
+            <path d="M137 226 Q147 211 141 198 Q136 189 130 199 Q123 210 130 224 Z" fill="#d966a0"/>
+            <ellipse cx="130" cy="261" rx="12" ry="9" fill="#fff0f6"/>
+            <ellipse cx="113" cy="269" rx="8" ry="5" fill="#d966a0"/>
+            <ellipse cx="147" cy="270" rx="8" ry="5" fill="#d966a0"/>
+            <circle cx="149" cy="260" r="7" fill="#fff8f2" stroke="#d966a0" stroke-width="1"/>
             <!-- button eyes watching door -->
             <circle cx="122" cy="240" r="4" fill="#3a2a20"/>
             <circle cx="138" cy="240" r="4" fill="#3a2a20"/>
@@ -1141,8 +1297,8 @@
             <!-- one word, maximum white space, upper left -->
             <text x="52" y="148" font-family="'Lora',serif" font-size="48" font-weight="500" fill="#b85040" opacity="0.9">"I waited."</text>
             <!-- tiny faint Pink, very small, corner -->
-            <ellipse cx="340" cy="295" rx="10" ry="12" fill="#f0b8a8" opacity="0.2"/>
-            <circle cx="340" cy="284" r="8" fill="#f0b8a8" opacity="0.2"/>
+            <ellipse cx="340" cy="295" rx="10" ry="12" fill="#d966a0" opacity="0.2"/>
+            <circle cx="340" cy="284" r="8" fill="#d966a0" opacity="0.2"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fdf8f4;">
@@ -1155,15 +1311,15 @@
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
             <rect width="420" height="340" fill="#fdf8f4"/>
             <!-- Pink alone, very small, centered slightly left -->
-            <ellipse cx="155" cy="258" rx="17" ry="20" fill="#f0b8a8"/>
-            <circle cx="155" cy="240" r="13" fill="#f0b8a8"/>
-            <ellipse cx="149" cy="225" rx="4.5" ry="11" fill="#f0b8a8"/>
-            <ellipse cx="149" cy="225" rx="2.5" ry="8" fill="#f8d0c4"/>
-            <path d="M161 231 Q169 219 164 208 Q160 200 155 209 Q149 219 155 230 Z" fill="#f0b8a8"/>
-            <ellipse cx="155" cy="257" rx="9.5" ry="7.5" fill="#f8d0c4"/>
-            <ellipse cx="143" cy="264" rx="6.5" ry="4" fill="#f0b8a8"/>
-            <ellipse cx="167" cy="265" rx="6.5" ry="4" fill="#f0b8a8"/>
-            <circle cx="169" cy="256" r="6" fill="#fff8f2" stroke="#f0b8a8" stroke-width="0.8"/>
+            <ellipse cx="155" cy="258" rx="17" ry="20" fill="#d966a0"/>
+            <circle cx="155" cy="240" r="13" fill="#d966a0"/>
+            <ellipse cx="149" cy="225" rx="4.5" ry="11" fill="#d966a0"/>
+            <ellipse cx="149" cy="225" rx="2.5" ry="8" fill="#fff0f6"/>
+            <path d="M161 231 Q169 219 164 208 Q160 200 155 209 Q149 219 155 230 Z" fill="#d966a0"/>
+            <ellipse cx="155" cy="257" rx="9.5" ry="7.5" fill="#fff0f6"/>
+            <ellipse cx="143" cy="264" rx="6.5" ry="4" fill="#d966a0"/>
+            <ellipse cx="167" cy="265" rx="6.5" ry="4" fill="#d966a0"/>
+            <circle cx="169" cy="256" r="6" fill="#fff8f2" stroke="#d966a0" stroke-width="0.8"/>
             <!-- tiny eyes -->
             <circle cx="149" cy="242" r="3" fill="#3a2a20"/>
             <circle cx="161" cy="242" r="3" fill="#3a2a20"/>
@@ -1208,15 +1364,15 @@
             <line x1="320" y1="85" x2="410" y2="85" stroke="#e8d0a8" stroke-width="1.5" opacity="0.4"/>
             <path d="M320 145 Q390 162 410 148 L410 170 Q390 180 320 165 Z" fill="#fce090" opacity="0.2"/>
             <!-- Pink, same spot, same size -->
-            <ellipse cx="175" cy="260" rx="20" ry="24" fill="#f0b8a8"/>
-            <circle cx="175" cy="238" r="16" fill="#f0b8a8"/>
-            <ellipse cx="168" cy="221" rx="5.5" ry="12" fill="#f0b8a8"/>
-            <ellipse cx="168" cy="221" rx="3" ry="9" fill="#f8d0c4"/>
-            <path d="M182 228 Q191 215 186 204 Q182 195 175 204 Q168 214 175 226 Z" fill="#f0b8a8"/>
-            <ellipse cx="175" cy="259" rx="11" ry="8.5" fill="#f8d0c4"/>
-            <ellipse cx="160" cy="267" rx="7.5" ry="4.5" fill="#f0b8a8"/>
-            <ellipse cx="190" cy="268" rx="7.5" ry="4.5" fill="#f0b8a8"/>
-            <circle cx="192" cy="258" r="7" fill="#fff8f2" stroke="#f0b8a8" stroke-width="0.9"/>
+            <ellipse cx="175" cy="260" rx="20" ry="24" fill="#d966a0"/>
+            <circle cx="175" cy="238" r="16" fill="#d966a0"/>
+            <ellipse cx="168" cy="221" rx="5.5" ry="12" fill="#d966a0"/>
+            <ellipse cx="168" cy="221" rx="3" ry="9" fill="#fff0f6"/>
+            <path d="M182 228 Q191 215 186 204 Q182 195 175 204 Q168 214 175 226 Z" fill="#d966a0"/>
+            <ellipse cx="175" cy="259" rx="11" ry="8.5" fill="#fff0f6"/>
+            <ellipse cx="160" cy="267" rx="7.5" ry="4.5" fill="#d966a0"/>
+            <ellipse cx="190" cy="268" rx="7.5" ry="4.5" fill="#d966a0"/>
+            <circle cx="192" cy="258" r="7" fill="#fff8f2" stroke="#d966a0" stroke-width="0.9"/>
             <circle cx="167" cy="240" r="3.5" fill="#3a2a20"/>
             <circle cx="183" cy="240" r="3.5" fill="#3a2a20"/>
             <circle cx="168.3" cy="238.5" r="1" fill="#fff"/>
@@ -1262,15 +1418,15 @@
             <!-- same hallway, now a warm glow under the door -->
             <rect x="280" y="280" width="140" height="10" fill="#fce090" opacity="0.45"/>
             <!-- Pink alert, eyes wide -->
-            <ellipse cx="120" cy="262" rx="22" ry="26" fill="#f0b8a8"/>
-            <circle cx="120" cy="238" r="17" fill="#f0b8a8"/>
-            <ellipse cx="113" cy="219" rx="5.5" ry="13" fill="#f0b8a8"/>
-            <ellipse cx="113" cy="219" rx="3" ry="9.5" fill="#f8d0c4"/>
-            <path d="M127 226 Q137 211 131 198 Q126 189 120 199 Q113 210 120 224 Z" fill="#f0b8a8"/>
-            <ellipse cx="120" cy="261" rx="12" ry="9" fill="#f8d0c4"/>
-            <ellipse cx="103" cy="269" rx="8" ry="5" fill="#f0b8a8"/>
-            <ellipse cx="137" cy="270" rx="8" ry="5" fill="#f0b8a8"/>
-            <circle cx="139" cy="260" r="7" fill="#fff8f2" stroke="#f0b8a8" stroke-width="1"/>
+            <ellipse cx="120" cy="262" rx="22" ry="26" fill="#d966a0"/>
+            <circle cx="120" cy="238" r="17" fill="#d966a0"/>
+            <ellipse cx="113" cy="219" rx="5.5" ry="13" fill="#d966a0"/>
+            <ellipse cx="113" cy="219" rx="3" ry="9.5" fill="#fff0f6"/>
+            <path d="M127 226 Q137 211 131 198 Q126 189 120 199 Q113 210 120 224 Z" fill="#d966a0"/>
+            <ellipse cx="120" cy="261" rx="12" ry="9" fill="#fff0f6"/>
+            <ellipse cx="103" cy="269" rx="8" ry="5" fill="#d966a0"/>
+            <ellipse cx="137" cy="270" rx="8" ry="5" fill="#d966a0"/>
+            <circle cx="139" cy="260" r="7" fill="#fff8f2" stroke="#d966a0" stroke-width="1"/>
             <!-- eyes wide, alert, looking toward the door -->
             <circle cx="112" cy="240" r="5" fill="#3a2a20"/>
             <circle cx="128" cy="240" r="5" fill="#3a2a20"/>
@@ -1341,26 +1497,58 @@
             <path d="M228 238 Q248 250 244 268" stroke="#f5c8a8" stroke-width="13" fill="none" stroke-linecap="round"/>
             <!-- Jessie head, eyes closed, peaceful, tired, home -->
             <circle cx="188" cy="178" r="38" fill="#f5c8a8"/>
-            <path d="M162 164 Q188 153 214 161" fill="#7a5040"/>
-            <path d="M162 170 Q154 150 158 138 Q163 127 170 135" fill="none" stroke="#7a5040" stroke-width="4.5" stroke-linecap="round"/>
-            <path d="M214 169 Q222 149 218 137 Q213 126 206 134" fill="none" stroke="#7a5040" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- curly hair — reunion scene, poofy and full -->
+            <circle cx="174" cy="151" r="16" fill="#7a5040"/>
+            <circle cx="188" cy="145" r="19" fill="#7a5040"/>
+            <circle cx="202" cy="150" r="16" fill="#7a5040"/>
+            <circle cx="163" cy="161" r="14" fill="#7a5040"/>
+            <circle cx="213" cy="160" r="14" fill="#7a5040"/>
+            <!-- side curls framing face -->
+            <circle cx="155" cy="175" r="13" fill="#7a5040"/>
+            <circle cx="221" cy="173" r="13" fill="#7a5040"/>
+            <!-- hanging ringlets -->
+            <path d="M155 186 Q151 197 155 207 Q159 216 155 224" stroke="#7a5040" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M221 184 Q225 195 221 205 Q217 214 221 222" stroke="#7a5040" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M163 186 Q160 195 163 203 Q166 210 163 217" stroke="#6a3828" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M213 184 Q216 193 213 201 Q210 208 213 215" stroke="#6a3828" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <!-- hair highlight -->
+            <path d="M175 143 Q188 137 201 141" stroke="#9a7060" stroke-width="2" fill="none" opacity="0.4"/>
+            <!-- eyebrows (relaxed/soft) -->
+            <path d="M171 167 Q180 162 188 165" stroke="#5a3520" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <path d="M188 165 Q196 160 205 163" stroke="#5a3520" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             <!-- eyes closed, finally resting -->
             <path d="M172 178 Q188 174 204 178" stroke="#3a2a20" stroke-width="2.2" fill="none"/>
+            <!-- eyelashes on closed lids -->
+            <path d="M173 178 Q172 173 174 170" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M180 176 Q179 171 181 168" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M188 175 Q188 170 190 167" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M195 176 Q196 171 198 168" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <path d="M202 178 Q203 173 205 170" stroke="#3a2a20" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <!-- nose -->
+            <ellipse cx="188" cy="190" rx="4" ry="3" fill="#e8a888" opacity="0.6"/>
             <!-- small smile, home -->
-            <path d="M174 193 Q188 200 202 193" stroke="#c87060" stroke-width="2" fill="none"/>
+            <path d="M174 200 Q188 208 202 200" stroke="#c87060" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <!-- cheek blush (warm, content) -->
+            <ellipse cx="163" cy="186" rx="13" ry="7" fill="#ffb0c0" opacity="0.3"/>
+            <ellipse cx="213" cy="186" rx="13" ry="7" fill="#ffb0c0" opacity="0.3"/>
             <!-- Pink held against chest, eyes OUT at reader -->
-            <ellipse cx="188" cy="234" rx="32" ry="38" fill="#f0b8a8"/>
-            <circle cx="188" cy="198" r="26" fill="#f0b8a8"/>
-            <ellipse cx="178" cy="170" rx="8.5" ry="20" fill="#f0b8a8"/>
-            <ellipse cx="178" cy="170" rx="4.5" ry="15" fill="#f8d0c4"/>
-            <path d="M198 178 Q214 152 206 130 Q200 117 192 129 Q183 144 192 175 Z" fill="#f0b8a8"/>
-            <ellipse cx="188" cy="234" rx="19" ry="22" fill="#f8d0c4"/>
+            <ellipse cx="188" cy="234" rx="32" ry="38" fill="#d966a0"/>
+            <circle cx="188" cy="198" r="26" fill="#d966a0"/>
+            <ellipse cx="178" cy="170" rx="8.5" ry="20" fill="#d966a0"/>
+            <ellipse cx="178" cy="170" rx="4.5" ry="15" fill="#fff0f6"/>
+            <path d="M198 178 Q214 152 206 130 Q200 117 192 129 Q183 144 192 175 Z" fill="#d966a0"/>
+            <ellipse cx="188" cy="234" rx="19" ry="22" fill="#fff0f6"/>
             <!-- Pink's eyes, direct, warm, certain -->
-            <circle cx="175" cy="200" r="7" fill="#3a2a20"/>
-            <circle cx="201" cy="200" r="7" fill="#3a2a20"/>
-            <circle cx="177" cy="198" r="2.1" fill="#fff"/>
-            <circle cx="203" cy="198" r="2.1" fill="#fff"/>
-            <ellipse cx="188" cy="216" rx="5" ry="4" fill="#c87060"/>
+            <circle cx="175" cy="200" r="8" fill="#1a1210"/>
+            <circle cx="201" cy="200" r="8" fill="#1a1210"/>
+            <circle cx="178" cy="197" r="2.8" fill="#fff"/>
+            <circle cx="204" cy="197" r="2.8" fill="#fff"/>
+            <circle cx="172" cy="204" r="1.3" fill="#fff" opacity="0.5"/>
+            <circle cx="198" cy="204" r="1.3" fill="#fff" opacity="0.5"/>
+            <!-- Pink cheek blush -->
+            <ellipse cx="160" cy="208" rx="12" ry="7" fill="#ff80b0" opacity="0.2"/>
+            <ellipse cx="216" cy="208" rx="12" ry="7" fill="#ff80b0" opacity="0.2"/>
+            <ellipse cx="188" cy="216" rx="5" ry="4" fill="#cc2244"/>
           </svg>
         </div>
         <div class="page-text" style="background:#fff8f2;">
@@ -1376,10 +1564,10 @@
             <rect width="420" height="340" fill="#fff8f2"/>
             <ellipse cx="210" cy="300" rx="280" ry="80" fill="#f0d8b8" opacity="0.2"/>
             <!-- faint ghost of Pink, like a memory -->
-            <ellipse cx="210" cy="225" rx="30" ry="36" fill="#f0b8a8" opacity="0.3"/>
-            <circle cx="210" cy="192" r="24" fill="#f0b8a8" opacity="0.3"/>
-            <ellipse cx="201" cy="165" rx="7" ry="18" fill="#f0b8a8" opacity="0.3"/>
-            <ellipse cx="219" cy="165" rx="7" ry="18" fill="#f0b8a8" opacity="0.3"/>
+            <ellipse cx="210" cy="225" rx="30" ry="36" fill="#d966a0" opacity="0.3"/>
+            <circle cx="210" cy="192" r="24" fill="#d966a0" opacity="0.3"/>
+            <ellipse cx="201" cy="165" rx="7" ry="18" fill="#d966a0" opacity="0.3"/>
+            <ellipse cx="219" cy="165" rx="7" ry="18" fill="#d966a0" opacity="0.3"/>
             <circle cx="200" cy="194" r="4.5" fill="#3a2a20" opacity="0.15"/>
             <circle cx="220" cy="194" r="4.5" fill="#3a2a20" opacity="0.15"/>
             <!-- closing text -->
@@ -1405,11 +1593,11 @@
           <svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice">
             <rect width="420" height="340" fill="#fdf4ef"/>
             <!-- soft author page illustration -->
-            <ellipse cx="210" cy="185" rx="55" ry="55" fill="#f0b8a8" opacity="0.25"/>
-            <ellipse cx="210" cy="200" rx="35" ry="42" fill="#f0b8a8" opacity="0.35"/>
-            <circle cx="210" cy="165" r="28" fill="#f0b8a8" opacity="0.35"/>
-            <ellipse cx="200" cy="135" rx="8" ry="20" fill="#f0b8a8" opacity="0.35"/>
-            <ellipse cx="220" cy="135" rx="8" ry="20" fill="#f0b8a8" opacity="0.35"/>
+            <ellipse cx="210" cy="185" rx="55" ry="55" fill="#d966a0" opacity="0.25"/>
+            <ellipse cx="210" cy="200" rx="35" ry="42" fill="#d966a0" opacity="0.35"/>
+            <circle cx="210" cy="165" r="28" fill="#d966a0" opacity="0.35"/>
+            <ellipse cx="200" cy="135" rx="8" ry="20" fill="#d966a0" opacity="0.35"/>
+            <ellipse cx="220" cy="135" rx="8" ry="20" fill="#d966a0" opacity="0.35"/>
             <circle cx="200" cy="168" r="5" fill="#3a2a20" opacity="0.2"/>
             <circle cx="220" cy="168" r="5" fill="#3a2a20" opacity="0.2"/>
             <!-- about text in illustration -->
@@ -1490,11 +1678,11 @@
             <text x="420" y="310" text-anchor="middle" font-family="'Lora',serif" font-style="italic" font-size="16" fill="#7a5040">She waited.</text>
             <text x="420" y="340" text-anchor="middle" font-family="'Lora',serif" font-size="13" fill="#c8a080" letter-spacing="1">And that was everything.</text>
             <!-- small Pink at bottom center -->
-            <ellipse cx="420" cy="478" rx="22" ry="26" fill="#f0b8a8" opacity="0.7"/>
-            <circle cx="420" cy="454" r="17" fill="#f0b8a8" opacity="0.7"/>
-            <ellipse cx="412" cy="435" rx="5" ry="13" fill="#f0b8a8" opacity="0.7"/>
-            <ellipse cx="412" cy="435" rx="3" ry="10" fill="#f8d0c4" opacity="0.7"/>
-            <path d="M428 441 Q438 426 433 414 Q428 405 422 414 Q415 424 422 440 Z" fill="#f0b8a8" opacity="0.7"/>
+            <ellipse cx="420" cy="478" rx="22" ry="26" fill="#d966a0" opacity="0.7"/>
+            <circle cx="420" cy="454" r="17" fill="#d966a0" opacity="0.7"/>
+            <ellipse cx="412" cy="435" rx="5" ry="13" fill="#d966a0" opacity="0.7"/>
+            <ellipse cx="412" cy="435" rx="3" ry="10" fill="#fff0f6" opacity="0.7"/>
+            <path d="M428 441 Q438 426 433 414 Q428 405 422 414 Q415 424 422 440 Z" fill="#d966a0" opacity="0.7"/>
             <circle cx="413" cy="456" r="4" fill="#3a2a20" opacity="0.5"/>
             <circle cx="427" cy="456" r="4" fill="#3a2a20" opacity="0.5"/>
             <circle cx="414.2" cy="454.5" r="1.2" fill="#fff" opacity="0.7"/>
