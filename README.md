@@ -41,7 +41,7 @@ The web version presents all 32 pages across 17 two-page spreads, with the spine
 
 ## License
 
-© Michael Khela. All rights reserved. This work — including the story, characters, and illustrations — is original creative work and may not be reproduced or distributed without permission.
+© Michael Khela. All rights reserved. This work, including the story, characters, and illustrations, is original creative work and may not be reproduced or distributed without permission.
 
 ---
 
