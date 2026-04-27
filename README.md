@@ -3,7 +3,7 @@
 
 ---
 
-> *"Although Pink was just a bunny, she was her bunny and that was everything."*
+> *"For every child who held on tight to something soft and never let go."*
 
 ---
 
@@ -13,15 +13,15 @@
 
 The story follows *Pink*, a stuffed bunny who narrates the story of growing up alongside the little girl who loves her. Told entirely from Pink's point of view, the book traces their bond through early childhood and arrives at its emotional center when the girl, Jessie, starts kindergarten for the first time, leaving Pink at home for the first time too.
 
-The book explores the idea that a comfort object is more than a toy. For many children, a stuffed animal is their first and most portable sense of home. In thr words of my younger sister, "a place they carry with them before they are ready to face the wider world alone". *Pink* tells that story from the object's side, showing what it means to love someone you can never speak to, and to be there for them simply by staying.
+The book explores the idea that a comfort object is more than a toy. For many children, a stuffed animal is their first and most portable sense of home. In the words of my younger sister, "a place they carry with them before they are ready to face the wider world alone". *Pink* tells that story from the object's side, showing what it means to love someone you can never speak to, and to be there for them simply by staying.
 
 ---
 
 ## About the project
 
-This book was created as part of a course on children's literature and picture book design. The illustrations were designed digitally, and the interactive web version was built as the final project.
+This book was created as part of a course on children's literature. The illustrations were designed digitally, and the interactive web version was built as the final project.
 
-The web version presents all 32 pages across 15 two-page spreads, with the spine and gutter visible, reflecting how the book would actually look when held open in a reader's hands.
+The web version presents all 32 pages across 17 two-page spreads, with the spine and gutter visible, reflecting how the book would actually look when held open in a reader's hands.
 
 **Inspired by** a close friend whose own pink bunny carried her through hard times at school and at home.
 
@@ -31,7 +31,6 @@ The web version presents all 32 pages across 15 two-page spreads, with the spine
 - CSS3 animations
 - Vanilla JavaScript
 - [Google Fonts — Lora and Nunito](https://fonts.google.com)
-- No frameworks, no dependencies, no build step
 
 
 ## Live site
